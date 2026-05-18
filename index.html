@@ -4,13 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NearGo 餐饮 OMS — 后台管理系统</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-/* ═══════════════════════════════════════════════
-   NEARGO OMS DESIGN SYSTEM TOKENS v3.2
-════════════════════════════════════════════════ */
-:root {
+/* ═══ NEARGO OMS DESIGN TOKENS v3.2 ═══ */
+:root{
   --amber-1:#fdfaf0;--amber-2:#fff8d6;--amber-3:#ffeea8;--amber-4:#ffe37c;
   --amber-5:#ffd652;--amber-6:#f5c42a;--amber-7:#e8af00;--amber-8:#d49c00;
   --amber-9:#FFA902;--amber-10:#f09a00;--amber-11:#8c5c00;--amber-12:#3c2500;
@@ -23,52 +20,76 @@
   --orange-bg:#fff6f0;--orange-bd:#ffe8d7;--orange-s:#f76b15;--orange-t:#bd4b00;
   --purple-bg:#faf5ff;--purple-bd:#ecdcfe;--purple-s:#8e4ec6;--purple-t:#793aaf;
   --bg:var(--gray-1);--surface:#fff;--border:var(--gray-6);
-  --text-hi:var(--gray-12);--text-mid:var(--gray-11);--text-low:var(--gray-9);
-  --text-dis:var(--gray-8);--brand:var(--amber-9);
-  --sh1:0 1px 2px rgba(0,0,0,.05);
-  --sh2:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.04);
+  --text-hi:var(--gray-12);--text-mid:var(--gray-11);--text-low:var(--gray-9);--text-dis:var(--gray-8);
+  --sh1:0 1px 2px rgba(0,0,0,.05);--sh2:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.04);
   --sh3:0 4px 8px rgba(0,0,0,.06),0 2px 4px rgba(0,0,0,.04);
-  --sh4:0 8px 16px rgba(0,0,0,.08),0 4px 8px rgba(0,0,0,.04);
-  --sh6:0 24px 48px rgba(0,0,0,.18);
+  --sh4:0 8px 16px rgba(0,0,0,.08);--sh6:0 24px 48px rgba(0,0,0,.18);
   --r1:3px;--r2:4px;--r3:6px;--r4:8px;--r5:12px;--r6:9999px;
-  --dur-fast:100ms;--dur-norm:150ms;--dur-mod:200ms;--dur-slow:250ms;
-  --ease-out:cubic-bezier(0,0,.2,1);--ease-spring:cubic-bezier(.34,1.56,.64,1);
-  --ease-gentle:cubic-bezier(.25,.46,.45,.94);
+  --dur-norm:150ms;--dur-mod:200ms;
+  --ease-out:cubic-bezier(0,0,.2,1);--ease-spring:cubic-bezier(.34,1.56,.64,1);--ease-gentle:cubic-bezier(.25,.46,.45,.94);
   --z-drop:100;--z-stick:200;--z-over:300;--z-modal:400;--z-toast:600;
+  /* ── 24-Column Grid ── */
   --sidebar-w:220px;--topbar-h:54px;
-  --font-sans:'Inter','Noto Sans SC',sans-serif;
-  --font-mono:'JetBrains Mono',monospace;
+  --gutter:16px;--gutter-lg:24px;--content-pad:24px;
 }
-[data-theme="dark"] {
+[data-theme="dark"]{
   --gray-1:#111110;--gray-2:#191918;--gray-3:#222221;--gray-4:#2a2927;
   --gray-5:#31302e;--gray-6:#3b3a37;--gray-7:#494845;--gray-8:#62605d;
-  --gray-9:#6f6d69;--gray-10:#7c7a76;--gray-11:#b5b2ad;--gray-12:#eeeeec;
+  --gray-9:#6f6d69;--gray-11:#b5b2ad;--gray-12:#eeeeec;
   --amber-9:#FF9900;--surface:#1c1b19;
-  --green-bg:#0d2e22;--green-bd:#1a5c40;
-  --red-bg:#2e1010;--red-bd:#5c1a1a;
-  --blue-bg:#0d1f30;--blue-bd:#1a3d5c;
+  --green-bg:#0d2e22;--green-bd:#1a5c40;--red-bg:#2e1010;--red-bd:#5c1a1a;
+  --blue-bg:#0d1f30;--blue-bd:#1a3d5c;--orange-bg:#2e1a0d;--orange-bd:#5c3014;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter','Noto Sans SC',sans-serif;background:var(--bg);color:var(--text-hi);font-size:14px;line-height:1.6;-webkit-font-smoothing:antialiased;}
+
+/* ══ 24-COLUMN GRID SYSTEM ══════════════════════════════════════
+   全宽布局 — 禁止使用 max-width 居中约束
+   所有内容区宽度由 col-N 列数定义
+═══════════════════════════════════════════════════════════════ */
+.grid-24{display:grid;grid-template-columns:repeat(24,1fr);gap:var(--gutter);width:100%;}
+.grid-24-lg{gap:var(--gutter-lg);}
+.col-24{grid-column:span 24}
+.col-18{grid-column:span 18}
+.col-17{grid-column:span 17}
+.col-16{grid-column:span 16}
+.col-12{grid-column:span 12}
+.col-10{grid-column:span 10}
+.col-8{grid-column:span 8}
+.col-7{grid-column:span 7}
+.col-6{grid-column:span 6}
+.col-4{grid-column:span 4}
+.mb-4{margin-bottom:var(--gutter);}
+.mb-5{margin-bottom:var(--gutter-lg);}
+.mb-6{margin-bottom:32px;}
+/* responsive */
+@media(max-width:1279px){
+  .col-6{grid-column:span 12}
+  .col-8{grid-column:span 12}
+  .col-16{grid-column:span 24}
+  .col-17,.col-7{grid-column:span 24}
+}
+@media(max-width:1023px){
+  .col-6,.col-7,.col-8,.col-10,.col-12,.col-16,.col-17,.col-18,.col-24{grid-column:span 24}
 }
 
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:var(--font-sans);background:var(--bg);color:var(--text-hi);font-size:14px;line-height:1.6;-webkit-font-smoothing:antialiased;}
-
-/* ── Layout ──────────────────────────────────────────── */
+/* ══ LAYOUT SHELL ══════════════════════════════════════════════ */
 .oms-shell{display:grid;grid-template-columns:var(--sidebar-w) 1fr;grid-template-rows:var(--topbar-h) 1fr;min-height:100vh;}
-.oms-topbar{grid-column:1/-1;position:sticky;top:0;z-index:var(--z-stick);background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 20px 0 0;}
-.topbar-brand{width:var(--sidebar-w);padding:0 16px;display:flex;align-items:center;gap:10px;border-right:1px solid var(--border);height:100%;}
+.oms-topbar{grid-column:1/-1;position:sticky;top:0;z-index:var(--z-stick);background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 20px 0 0;height:var(--topbar-h);}
+.topbar-brand{width:var(--sidebar-w);padding:0 16px;display:flex;align-items:center;gap:10px;border-right:1px solid var(--border);height:100%;flex-shrink:0;}
 .topbar-brand-dot{width:24px;height:24px;border-radius:var(--r3);background:var(--amber-9);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:var(--amber-12);flex-shrink:0;}
 .topbar-brand-name{font-size:13px;font-weight:700;color:var(--text-hi);}
 .topbar-brand-ver{font-size:10px;color:var(--text-dis);}
 .topbar-right{display:flex;align-items:center;gap:10px;}
-.topbar-search{height:32px;width:260px;border:1px solid var(--border);border-radius:var(--r3);padding:0 10px 0 30px;font-size:13px;color:var(--text-hi);background:var(--bg);font-family:var(--font-sans);outline:none;transition:border-color var(--dur-norm) var(--ease-out);}
+.topbar-search{height:32px;width:240px;border:1px solid var(--border);border-radius:var(--r3);padding:0 10px 0 30px;font-size:13px;color:var(--text-hi);background:var(--bg);font-family:inherit;outline:none;transition:border-color var(--dur-norm) var(--ease-out);}
 .topbar-search:focus{border-color:var(--gray-12);box-shadow:0 0 0 2px var(--gray-4);}
-.search-wrap{position:relative;}
-.search-ico{position:absolute;left:9px;top:50%;transform:translateY(-50%);color:var(--text-dis);font-size:13px;pointer-events:none;}
+.search-wrap{position:relative;display:flex;align-items:center;}
+.search-ico{position:absolute;left:9px;color:var(--text-dis);font-size:13px;pointer-events:none;}
 
-/* ── Sidebar ─────────────────────────────────────────── */
+/* ══ SIDEBAR ══════════════════════════════════════════════════ */
 .oms-sidebar{background:var(--surface);border-right:1px solid var(--border);overflow-y:auto;position:sticky;top:var(--topbar-h);height:calc(100vh - var(--topbar-h));}
 .nav-group{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dis);padding:12px 16px 4px;}
-.nav-item{display:flex;align-items:center;gap:8px;height:34px;padding:0 16px;font-size:13px;color:var(--text-mid);cursor:pointer;border-left:2px solid transparent;transition:all var(--dur-norm) var(--ease-out);text-decoration:none;position:relative;}
+.nav-item{display:flex;align-items:center;gap:8px;height:34px;padding:0 16px;font-size:13px;color:var(--text-mid);cursor:pointer;border-left:2px solid transparent;transition:all var(--dur-norm) var(--ease-out);text-decoration:none;}
 .nav-item:hover{background:var(--gray-2);color:var(--text-hi);}
 .nav-item.active{background:var(--amber-2);color:var(--text-hi);font-weight:500;border-left-color:var(--amber-9);}
 .nav-icon{width:16px;height:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px;}
@@ -79,21 +100,21 @@ body{font-family:var(--font-sans);background:var(--bg);color:var(--text-hi);font
 .user-name{font-size:12px;font-weight:500;color:var(--text-hi);}
 .user-role{font-size:10px;color:var(--text-dis);}
 
-/* ── Content ─────────────────────────────────────────── */
-.oms-content{background:var(--bg);overflow-y:auto;padding:24px;}
+/* ══ CONTENT ══════════════════════════════════════════════════ */
+/* ⚠️ 全宽 — 无 max-width，由内部 grid-24 控制比例 */
+.oms-content{background:var(--bg);overflow-y:auto;padding:var(--content-pad);}
 .page{display:none;width:100%;}
 .page.active{display:block;}
-.page-header{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:24px;}
+.page-header{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:20px;}
 .page-title{font-size:20px;font-weight:700;letter-spacing:-.03em;color:var(--text-hi);}
 .page-sub{font-size:13px;color:var(--text-low);margin-top:3px;}
-.page-actions{display:flex;gap:8px;flex-shrink:0;}
+.page-actions{display:flex;gap:8px;flex-shrink:0;align-items:center;}
 
-/* ── Buttons ─────────────────────────────────────────── */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:none;cursor:pointer;font-family:var(--font-sans);font-weight:500;border-radius:var(--r3);transition:all var(--dur-norm) var(--ease-out);white-space:nowrap;font-size:13.5px;letter-spacing:-.01em;}
+/* ══ BUTTONS ══════════════════════════════════════════════════ */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:none;cursor:pointer;font-family:inherit;font-weight:500;border-radius:var(--r3);transition:all var(--dur-norm) var(--ease-out);white-space:nowrap;font-size:13.5px;}
 .btn:disabled{opacity:.45;cursor:not-allowed;}
 .btn-sm{height:30px;padding:0 12px;font-size:12px;}
 .btn-md{height:36px;padding:0 16px;}
-.btn-lg{height:42px;padding:0 20px;font-size:14.5px;}
 .btn-p{background:var(--gray-12);color:#fff;}.btn-p:hover{background:var(--gray-11);}
 .btn-s{background:var(--surface);color:var(--text-hi);border:1px solid var(--gray-7);}.btn-s:hover{background:var(--gray-2);}
 .btn-g{background:var(--green-s);color:#fff;}.btn-g:hover{filter:brightness(.93);}
@@ -101,15 +122,14 @@ body{font-family:var(--font-sans);background:var(--bg);color:var(--text-hi);font
 .btn-ghost{background:transparent;color:var(--blue-t);}.btn-ghost:hover{background:var(--blue-bg);}
 .btn-brand{background:var(--amber-9);color:var(--amber-12);font-weight:700;}.btn-brand:hover{background:var(--amber-10);}
 
-/* ── Cards ───────────────────────────────────────────── */
-.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r4);box-shadow:var(--sh2);overflow:hidden;}
+/* ══ CARDS ════════════════════════════════════════════════════ */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r4);box-shadow:var(--sh2);overflow:hidden;height:100%;}
 .card-body{padding:20px;}
 .card-header{padding:14px 20px;border-bottom:1px solid var(--gray-3);display:flex;align-items:center;justify-content:space-between;}
 .card-title{font-size:14px;font-weight:600;color:var(--text-hi);}
 
-/* ── KPI Cards ───────────────────────────────────────── */
-.kpi-grid{margin-bottom:var(--gutter-lg);}
-.kpi-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r4);padding:20px;box-shadow:var(--sh1);}
+/* ══ KPI CARDS ════════════════════════════════════════════════ */
+.kpi-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r4);padding:20px;box-shadow:var(--sh1);height:100%;}
 .kpi-icon{width:38px;height:38px;border-radius:var(--r3);display:flex;align-items:center;justify-content:center;font-size:17px;margin-bottom:12px;}
 .kpi-value{font-size:28px;font-weight:700;letter-spacing:-.03em;line-height:1;color:var(--text-hi);}
 .kpi-label{font-size:12.5px;color:var(--text-mid);margin-top:5px;}
@@ -118,7 +138,7 @@ body{font-family:var(--font-sans);background:var(--bg);color:var(--text-hi);font
 .trend-up{color:var(--green-s);}
 .trend-down{color:var(--red-s);}
 
-/* ── Badges ──────────────────────────────────────────── */
+/* ══ BADGES & STATUS ══════════════════════════════════════════ */
 .badge{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:var(--r2);font-size:11px;font-weight:500;line-height:1.6;white-space:nowrap;border:1px solid;}
 .b-success{background:var(--green-bg);border-color:var(--green-bd);color:var(--green-t);}
 .b-danger{background:var(--red-bg);border-color:var(--red-bd);color:var(--red-t);}
@@ -128,87 +148,79 @@ body{font-family:var(--font-sans);background:var(--bg);color:var(--text-hi);font
 .b-gray{background:var(--gray-2);border-color:var(--border);color:var(--text-mid);}
 .b-brand{background:var(--amber-9);border-color:transparent;color:var(--amber-12);font-weight:700;}
 
-/* ── Status dots ─────────────────────────────────────── */
-.status{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;}
-.dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
-
-/* ── Table ───────────────────────────────────────────── */
+/* ══ TABLE ════════════════════════════════════════════════════ */
 .table-wrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--r4);overflow:hidden;box-shadow:var(--sh1);}
 .tbl{width:100%;border-collapse:collapse;font-size:13px;}
 .tbl th{background:var(--gray-2);text-align:left;padding:10px 14px;font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text-low);border-bottom:1px solid var(--border);}
 .tbl td{padding:12px 14px;border-bottom:1px solid var(--gray-3);color:var(--text-mid);vertical-align:middle;}
 .tbl tr:last-child td{border-bottom:none;}
 .tbl tr:hover td{background:var(--gray-2);}
-.tbl-id{font-family:var(--font-mono);font-size:11.5px;color:var(--text-low);}
+.tbl-id{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--text-low);}
 .tbl-main{font-weight:500;color:var(--text-hi);}
-
-/* ── Toolbar ─────────────────────────────────────────── */
 .toolbar{display:flex;align-items:center;gap:8px;padding:14px 16px;border-bottom:1px solid var(--border);background:var(--surface);}
-.toolbar-search{height:34px;flex:1;max-width:320px;border:1px solid var(--border);border-radius:var(--r3);padding:0 10px 0 30px;font-size:13px;background:var(--bg);font-family:var(--font-sans);outline:none;color:var(--text-hi);}
+.toolbar-search{height:34px;flex:1;max-width:320px;border:1px solid var(--border);border-radius:var(--r3);padding:0 10px 0 30px;font-size:13px;background:var(--bg);font-family:inherit;outline:none;color:var(--text-hi);}
 .toolbar-search:focus{border-color:var(--gray-12);box-shadow:0 0 0 2px var(--gray-4);}
-.filter-select{height:34px;border:1px solid var(--border);border-radius:var(--r3);padding:0 24px 0 10px;font-size:13px;color:var(--text-mid);background:var(--surface);font-family:var(--font-sans);appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23b0adaa' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 8px center;cursor:pointer;outline:none;}
+.filter-select{height:34px;border:1px solid var(--border);border-radius:var(--r3);padding:0 24px 0 10px;font-size:13px;color:var(--text-mid);background:var(--surface);font-family:inherit;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23b0adaa' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 8px center;cursor:pointer;outline:none;}
 .result-count{font-size:12px;color:var(--text-low);margin-left:auto;}
-
-/* ── Pagination ──────────────────────────────────────── */
 .pagination{display:flex;align-items:center;gap:4px;padding:12px 16px;border-top:1px solid var(--gray-3);}
-.pg-btn{min-width:32px;height:32px;padding:0 8px;border:1px solid var(--border);border-radius:var(--r3);background:var(--surface);color:var(--text-mid);cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center;transition:all var(--dur-fast);}
+.pg-btn{min-width:32px;height:32px;padding:0 8px;border:1px solid var(--border);border-radius:var(--r3);background:var(--surface);color:var(--text-mid);cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center;transition:all 100ms;}
 .pg-btn:hover{border-color:var(--gray-8);color:var(--text-hi);}
 .pg-btn.active{background:var(--gray-12);color:#fff;border-color:var(--gray-12);font-weight:600;}
 .pg-btn:disabled{opacity:.35;cursor:not-allowed;}
 .pg-total{font-size:12px;color:var(--text-low);margin-right:auto;}
 
-/* ── Tabs ────────────────────────────────────────────── */
+/* ══ TABS ═════════════════════════════════════════════════════ */
 .tabs{display:flex;border-bottom:1px solid var(--border);margin-bottom:16px;}
-.tab-btn{padding:10px 16px;font-size:13px;color:var(--text-mid);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;background:none;border-top:none;border-left:none;border-right:none;font-family:var(--font-sans);transition:all var(--dur-norm) var(--ease-out);}
+.tab-btn{padding:10px 16px;font-size:13px;color:var(--text-mid);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;background:none;border-top:none;border-left:none;border-right:none;font-family:inherit;transition:all var(--dur-norm) var(--ease-out);}
 .tab-btn:hover{color:var(--text-hi);}
 .tab-btn.active{color:var(--text-hi);font-weight:500;border-bottom-color:var(--gray-12);}
-.tab-pane{display:none;}.tab-pane.active{display:block;}
 
-/* ── Modal ───────────────────────────────────────────── */
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:var(--z-over);display:flex;align-items:center;justify-content:center;padding:20px;animation:fadeIn var(--dur-mod) var(--ease-gentle);}
-.modal{background:var(--surface);border-radius:var(--r5);box-shadow:var(--sh6);width:100%;max-width:560px;max-height:calc(100vh-40px);display:flex;flex-direction:column;z-index:var(--z-modal);animation:popIn var(--dur-mod) var(--ease-gentle);}
-.modal-lg{max-width:720px;}
-.modal-header{display:flex;align-items:flex-start;justify-content:space-between;padding:18px 20px;border-bottom:1px solid var(--border);flex-shrink:0;}
-.modal-title{font-size:16px;font-weight:600;color:var(--text-hi);}
-.modal-close{width:28px;height:28px;display:flex;align-items:center;justify-content:center;border-radius:var(--r3);background:none;border:none;cursor:pointer;color:var(--text-low);font-size:16px;transition:all var(--dur-fast);}
-.modal-close:hover{background:var(--gray-3);color:var(--text-hi);}
-.modal-body{padding:20px;overflow-y:auto;flex:1;}
-.modal-footer{display:flex;justify-content:flex-end;gap:8px;padding:14px 20px;border-top:1px solid var(--border);background:var(--gray-2);flex-shrink:0;border-radius:0 0 var(--r5) var(--r5);}
-.hidden{display:none!important;}
-
-/* ── Form ────────────────────────────────────────────── */
+/* ══ FORM ═════════════════════════════════════════════════════ */
+.form-section{background:var(--surface);border:1px solid var(--border);border-radius:var(--r4);padding:20px;margin-bottom:12px;}
+.form-section-title{font-size:14px;font-weight:600;color:var(--text-hi);margin-bottom:3px;}
+.form-section-desc{font-size:12px;color:var(--text-low);margin-bottom:16px;}
 .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
 .form-grid-1{grid-template-columns:1fr;}
 .field{display:flex;flex-direction:column;gap:5px;}
 .field-label{font-size:12px;font-weight:500;color:var(--text-mid);}
 .req{color:var(--red-s);}
-.input{height:36px;border:1px solid var(--gray-7);border-radius:var(--r3);padding:0 11px;font-size:13.5px;color:var(--text-hi);background:var(--surface);font-family:var(--font-sans);outline:none;transition:border-color var(--dur-norm),box-shadow var(--dur-norm);width:100%;}
+.input{height:36px;border:1px solid var(--gray-7);border-radius:var(--r3);padding:0 11px;font-size:13.5px;color:var(--text-hi);background:var(--surface);font-family:inherit;outline:none;transition:border-color var(--dur-norm),box-shadow var(--dur-norm);width:100%;}
 .input::placeholder{color:var(--text-dis);}
 .input:focus{border-color:var(--gray-12);box-shadow:0 0 0 2px var(--gray-4);}
-.input.err{border-color:var(--red-s);}
-.input.err:focus{box-shadow:0 0 0 2px var(--red-bd);}
+.input.err{border-color:var(--red-s);}.input.err:focus{box-shadow:0 0 0 2px var(--red-bd);}
+.input[readonly]{background:var(--gray-2);border-color:var(--gray-6);}
 textarea.input{height:80px;padding:9px 11px;resize:vertical;line-height:1.5;}
 select.input{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23b0adaa' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;padding-right:28px;cursor:pointer;}
 .field-hint{font-size:11.5px;color:var(--text-low);}
 .field-err{font-size:11.5px;color:var(--red-t);}
 
-/* ── Form sections ───────────────────────────────────── */
-.form-section{background:var(--surface);border:1px solid var(--border);border-radius:var(--r4);padding:20px;margin-bottom:12px;}
-.form-section-title{font-size:14px;font-weight:600;color:var(--text-hi);margin-bottom:3px;}
-.form-section-desc{font-size:12px;color:var(--text-low);margin-bottom:16px;}
+/* ══ MODAL ════════════════════════════════════════════════════ */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:var(--z-over);display:flex;align-items:center;justify-content:center;padding:20px;animation:fadeIn var(--dur-mod) var(--ease-gentle);}
+.modal{background:var(--surface);border-radius:var(--r5);box-shadow:var(--sh6);width:100%;max-width:560px;max-height:calc(100vh - 40px);display:flex;flex-direction:column;z-index:var(--z-modal);animation:popIn var(--dur-mod) var(--ease-gentle);}
+.modal-lg{max-width:720px;}
+.modal-header{display:flex;align-items:flex-start;justify-content:space-between;padding:18px 20px;border-bottom:1px solid var(--border);flex-shrink:0;}
+.modal-title{font-size:16px;font-weight:600;color:var(--text-hi);}
+.modal-close{width:28px;height:28px;display:flex;align-items:center;justify-content:center;border-radius:var(--r3);background:none;border:none;cursor:pointer;color:var(--text-low);font-size:16px;transition:all 100ms;}
+.modal-close:hover{background:var(--gray-3);color:var(--text-hi);}
+.modal-body{padding:20px;overflow-y:auto;flex:1;}
+.modal-footer{display:flex;justify-content:flex-end;gap:8px;padding:14px 20px;border-top:1px solid var(--border);background:var(--gray-2);flex-shrink:0;border-radius:0 0 var(--r5) var(--r5);}
+.hidden{display:none!important;}
 
-/* ── Charts (SVG) ────────────────────────────────────── */
-.chart-wrap{position:relative;height:180px;}
-.chart-bars{display:flex;align-items:flex-end;gap:6px;height:160px;padding-top:20px;}
-.chart-bar{flex:1;border-radius:var(--r2) var(--r2) 0 0;min-width:0;transition:opacity var(--dur-norm);}
-.chart-bar:hover{opacity:.8;}
-.chart-labels{display:flex;gap:6px;margin-top:4px;}
-.chart-label{flex:1;text-align:center;font-size:10px;color:var(--text-low);min-width:0;overflow:hidden;text-overflow:ellipsis;}
-.chart-legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:8px;}
-.legend-item{display:flex;align-items:center;gap:5px;font-size:11.5px;color:var(--text-mid);}
-.legend-dot{width:8px;height:8px;border-radius:50%;}
-
-/* ── Toast ───────────────────────────────────────────── */
+/* ══ MISC ═════════════════════════════════════════════════════ */
+.alert{display:flex;align-items:flex-start;gap:10px;padding:12px 14px;border-radius:var(--r4);border:1px solid;font-size:13px;margin-bottom:16px;}
+.alert-warning{background:var(--orange-bg);border-color:var(--orange-bd);color:var(--orange-t);}
+.alert-info{background:var(--blue-bg);border-color:var(--blue-bd);color:var(--blue-t);}
+.menu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;}
+.menu-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r4);overflow:hidden;cursor:pointer;transition:all var(--dur-norm) var(--ease-out);}
+.menu-card:hover{box-shadow:var(--sh3);transform:translateY(-2px);}
+.menu-img{height:130px;background:var(--gray-3);display:flex;align-items:center;justify-content:center;font-size:44px;}
+.menu-info{padding:12px;}
+.menu-name{font-size:14px;font-weight:600;color:var(--text-hi);}
+.menu-cat{font-size:11.5px;color:var(--text-low);margin-top:2px;}
+.menu-footer{display:flex;align-items:center;justify-content:space-between;margin-top:10px;}
+.menu-price{font-size:16px;font-weight:700;color:var(--amber-11);}
+.theme-toggle{width:34px;height:34px;border:1px solid var(--border);border-radius:var(--r3);background:var(--surface);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:15px;color:var(--text-mid);transition:all var(--dur-norm);}
+.theme-toggle:hover{background:var(--gray-2);}
 .toast-viewport{position:fixed;bottom:20px;right:20px;z-index:var(--z-toast);display:flex;flex-direction:column;gap:8px;width:360px;pointer-events:none;}
 .toast{display:flex;align-items:flex-start;gap:10px;padding:14px;border-radius:var(--r4);border:1px solid;box-shadow:var(--sh4);pointer-events:all;animation:slideInRight var(--dur-mod) var(--ease-out);}
 .toast-success{background:var(--green-bg);border-color:var(--green-bd);}
@@ -219,81 +231,32 @@ select.input{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xml
 .toast-desc{font-size:12px;color:var(--text-mid);margin-top:2px;}
 .toast-close{margin-left:auto;background:none;border:none;cursor:pointer;opacity:.5;font-size:13px;color:var(--text-mid);padding:0;flex-shrink:0;}
 .toast-close:hover{opacity:1;}
-
-/* ── Alerts ──────────────────────────────────────────── */
-.alert{display:flex;align-items:flex-start;gap:10px;padding:12px 14px;border-radius:var(--r4);border:1px solid;font-size:13px;margin-bottom:16px;}
-.alert-warning{background:var(--orange-bg);border-color:var(--orange-bd);color:var(--orange-t);}
-.alert-info{background:var(--blue-bg);border-color:var(--blue-bd);color:var(--blue-t);}
-
-/* ── Dashboard layout ────────────────────────────────── */
-.dash-unused{display:none}
+/* charts */
+.chart-bars{display:flex;align-items:flex-end;gap:6px;height:140px;padding-top:20px;}
+.chart-bar{flex:1;border-radius:var(--r2) var(--r2) 0 0;min-width:0;transition:opacity var(--dur-norm);}
+.chart-bar:hover{opacity:.8;}
+.chart-labels{display:flex;gap:6px;margin-top:4px;}
+.chart-label{flex:1;text-align:center;font-size:10px;color:var(--text-low);min-width:0;overflow:hidden;text-overflow:ellipsis;}
+/* order list */
 .order-list-item{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--gray-3);}
 .order-list-item:last-child{border-bottom:none;}
 .ol-img{width:40px;height:40px;border-radius:var(--r3);background:var(--gray-3);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:18px;}
 .ol-main{flex:1;min-width:0;}
 .ol-name{font-size:13px;font-weight:500;color:var(--text-hi);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .ol-meta{font-size:11.5px;color:var(--text-low);margin-top:2px;}
-.ol-amount{font-size:14px;font-weight:600;color:var(--amber-11);flex-shrink:0;}
-
-/* ── Activity feed ───────────────────────────────────── */
+/* activity */
 .activity-item{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--gray-3);}
 .activity-item:last-child{border-bottom:none;}
-.act-dot-wrap{position:relative;display:flex;flex-direction:column;align-items:center;flex-shrink:0;}
-.act-dot{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;}
-.act-content{flex:1;min-width:0;}
+.act-dot{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0;}
 .act-title{font-size:13px;color:var(--text-hi);}
-.act-time{font-size:11px;color:var(--text-low);font-family:var(--font-mono);margin-top:2px;}
-
-/* ── Menu item cards ─────────────────────────────────── */
-.menu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;}
-.menu-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r4);overflow:hidden;cursor:pointer;transition:all var(--dur-norm) var(--ease-out);}
-.menu-card:hover{box-shadow:var(--sh3);transform:translateY(-2px);}
-.menu-img{height:140px;background:var(--gray-3);display:flex;align-items:center;justify-content:center;font-size:48px;}
-.menu-info{padding:12px;}
-.menu-name{font-size:14px;font-weight:600;color:var(--text-hi);}
-.menu-cat{font-size:11.5px;color:var(--text-low);margin-top:2px;}
-.menu-footer{display:flex;align-items:center;justify-content:space-between;margin-top:10px;}
-.menu-price{font-size:16px;font-weight:700;color:var(--amber-11);}
-.menu-price span{font-size:11px;font-weight:400;color:var(--text-low);}
-
-/* ── Switch ──────────────────────────────────────────── */
-.switch-track{width:36px;height:20px;border-radius:var(--r6);cursor:pointer;position:relative;border:none;transition:background var(--dur-norm) var(--ease-out);}
-.switch-track.on{background:var(--gray-12);}
-.switch-track.off{background:var(--gray-6);}
-.switch-thumb{width:16px;height:16px;border-radius:50%;background:#fff;position:absolute;top:2px;box-shadow:var(--sh1);transition:transform var(--dur-norm) var(--ease-spring);}
-.switch-track.on .switch-thumb{transform:translateX(18px);}
-.switch-track.off .switch-thumb{transform:translateX(2px);}
-
-/* ── Dark mode toggle ────────────────────────────────── */
-.theme-toggle{width:34px;height:34px;border:1px solid var(--border);border-radius:var(--r3);background:var(--surface);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:15px;color:var(--text-mid);transition:all var(--dur-norm);}
-.theme-toggle:hover{background:var(--gray-2);color:var(--text-hi);}
-
-/* ── Animations ──────────────────────────────────────── */
+.act-time{font-size:11px;color:var(--text-low);font-family:'JetBrains Mono',monospace;margin-top:2px;}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 @keyframes popIn{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:scale(1)}}
 @keyframes slideInRight{from{opacity:0;transform:translateX(16px)}to{opacity:1;transform:translateX(0)}}
-@keyframes shimmer{0%{background-position:-400px 0}100%{background-position:400px 0}}
-.skeleton{background:linear-gradient(90deg,var(--gray-3) 25%,var(--gray-2) 50%,var(--gray-3) 75%);background-size:800px 100%;animation:shimmer 1.4s ease-in-out infinite;border-radius:var(--r4);}
-
-
-/* ═══ 24-COLUMN GRID SYSTEM ═══════════════════════════════ */
-:root{--gutter:16px;--gutter-lg:24px;--content-pad:24px;}
-.grid-24{display:grid;grid-template-columns:repeat(24,1fr);gap:var(--gutter);width:100%;}
-.grid-24-lg{gap:var(--gutter-lg);}
-.col-24{grid-column:span 24}.col-18{grid-column:span 18}
-.col-17{grid-column:span 17}.col-16{grid-column:span 16}
-.col-12{grid-column:span 12}.col-10{grid-column:span 10}
-.col-8{grid-column:span 8}.col-7{grid-column:span 7}
-.col-6{grid-column:span 6}.col-4{grid-column:span 4}
-.mb-4{margin-bottom:var(--gutter)}.mb-5{margin-bottom:var(--gutter-lg)}.mb-6{margin-bottom:32px}
-@media(max-width:1279px){.col-6{grid-column:span 12}.col-8{grid-column:span 12}.col-16{grid-column:span 24}.col-17,.col-7{grid-column:span 24}}
-@media(max-width:1023px){.col-6,.col-8,.col-12,.col-16,.col-17,.col-18,.col-24{grid-column:span 24}}
-
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
 </style>
 </head>
 <body>
-
 <div class="oms-shell">
 
 <!-- ══ TOPBAR ══ -->
@@ -302,17 +265,17 @@ select.input{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xml
     <div class="topbar-brand-dot">N</div>
     <div>
       <div class="topbar-brand-name">NearGo 餐饮 OMS</div>
-      <div class="topbar-brand-ver">v3.2 · 门店管理系统</div>
+      <div class="topbar-brand-ver">v3.2 · 24栅格布局</div>
     </div>
   </div>
   <div class="topbar-right">
     <div class="search-wrap">
       <span class="search-ico">⌕</span>
-      <input class="topbar-search" placeholder="搜索订单、门店、菜品…" id="globalSearch">
+      <input class="topbar-search" placeholder="搜索订单、门店、菜品…">
     </div>
     <button class="btn btn-brand btn-sm" onclick="showToast('success','工单已发起','新建门店申请进入审批流程')">+ 发起申请</button>
-    <button class="theme-toggle" onclick="toggleTheme()" title="切换深色/浅色模式" id="themeBtn">🌙</button>
-    <div class="user-avatar" style="width:32px;height:32px;font-size:12px;cursor:pointer" onclick="showToast('info','用户中心','个人设置功能开发中')">A</div>
+    <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">🌙</button>
+    <div class="user-avatar" style="width:32px;height:32px;font-size:12px;cursor:pointer">Z</div>
   </div>
 </header>
 
@@ -320,125 +283,104 @@ select.input{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xml
 <aside class="oms-sidebar">
   <nav>
     <div class="nav-group">概览</div>
-    <a class="nav-item active" onclick="nav('dashboard',this)">
-      <span class="nav-icon">📊</span> 系统概览
-    </a>
-
+    <a class="nav-item active" onclick="nav('dashboard',this)"><span class="nav-icon">📊</span>系统概览</a>
     <div class="nav-group">业务管理</div>
-    <a class="nav-item" onclick="nav('orders',this)">
-      <span class="nav-icon">🛒</span> 订单管理
-      <span class="nav-badge">12</span>
-    </a>
-    <a class="nav-item" onclick="nav('restaurants',this)">
-      <span class="nav-icon">🏪</span> 门店管理
-    </a>
-    <a class="nav-item" onclick="nav('menu',this)">
-      <span class="nav-icon">🍽️</span> 菜品管理
-    </a>
-    <a class="nav-item" onclick="nav('staff',this)">
-      <span class="nav-icon">👥</span> 员工管理
-    </a>
-
+    <a class="nav-item" onclick="nav('orders',this)"><span class="nav-icon">🛒</span>订单管理<span class="nav-badge">12</span></a>
+    <a class="nav-item" onclick="nav('restaurants',this)"><span class="nav-icon">🏪</span>门店管理</a>
+    <a class="nav-item" onclick="nav('menu',this)"><span class="nav-icon">🍽️</span>菜品管理</a>
+    <a class="nav-item" onclick="nav('staff',this)"><span class="nav-icon">👥</span>员工管理</a>
     <div class="nav-group">运营</div>
-    <a class="nav-item" onclick="nav('promotions',this)">
-      <span class="nav-icon">🎁</span> 优惠活动
-      <span class="badge b-brand" style="margin-left:auto;padding:1px 5px;font-size:9px;">NEW</span>
-    </a>
-    <a class="nav-item" onclick="nav('reports',this)">
-      <span class="nav-icon">📈</span> 数据报表
-    </a>
-
+    <a class="nav-item" onclick="nav('promotions',this)"><span class="nav-icon">🎁</span>优惠活动<span class="badge b-brand" style="margin-left:auto;padding:1px 5px;font-size:9px">NEW</span></a>
+    <a class="nav-item" onclick="nav('reports',this)"><span class="nav-icon">📈</span>数据报表</a>
     <div class="nav-group">系统</div>
-    <a class="nav-item" onclick="showToast('info','功能开发中','权限管理模块即将上线')">
-      <span class="nav-icon">🔑</span> 权限管理
-    </a>
-    <a class="nav-item" onclick="showToast('info','功能开发中','系统配置模块即将上线')">
-      <span class="nav-icon">⚙️</span> 系统配置
-    </a>
+    <a class="nav-item" onclick="showToast('info','功能开发中','权限管理即将上线')"><span class="nav-icon">🔑</span>权限管理</a>
+    <a class="nav-item" onclick="showToast('info','功能开发中','系统配置即将上线')"><span class="nav-icon">⚙️</span>系统配置</a>
   </nav>
-
   <div class="sidebar-footer">
     <div class="user-row">
       <div class="user-avatar">Z</div>
-      <div>
-        <div class="user-name">Zoe Zou</div>
-        <div class="user-role">超级管理员</div>
-      </div>
+      <div><div class="user-name">Zoe Zou</div><div class="user-role">超级管理员</div></div>
     </div>
   </div>
 </aside>
 
-<!-- ══ CONTENT PAGES ══ -->
+<!-- ══ CONTENT ══ -->
 <main class="oms-content">
 
-  <!-- ─── DASHBOARD ─── -->
-  <div class="page active" id="page-dashboard">
-    <div class="page-header">
-      <div>
-        <div class="page-title">系统概览</div>
-        <div class="page-sub">欢迎回来，Zoe — 今日 <strong style="color:var(--amber-11)">12 笔</strong> 待处理订单</div>
-      </div>
-      <div class="page-actions">
-        <button class="btn btn-s btn-sm" onclick="showToast('info','报表已导出','今日数据报表已下载')">导出报表</button>
-        <button class="btn btn-p btn-sm" onclick="openModal('modal-new-restaurant')">+ 新增门店</button>
-      </div>
+<!-- ─── DASHBOARD ─── -->
+<div class="page active" id="page-dashboard">
+  <div class="page-header">
+    <div>
+      <div class="page-title">系统概览</div>
+      <div class="page-sub">欢迎回来，Zoe — 今日 <strong style="color:var(--amber-11)">12 笔</strong> 待处理订单</div>
     </div>
-
-    <!-- Alert -->
-    <div class="alert alert-warning">
-      <span>⚠</span>
-      <div><strong>库存预警：</strong>3 款热销菜品库存不足 20 份，请及时补充。<a href="#" onclick="nav('menu',document.querySelector('[onclick*=menu]'));return false;" style="color:var(--orange-t);font-weight:600;margin-left:8px;text-decoration:underline">查看详情 →</a></div>
+    <div class="page-actions">
+      <button class="btn btn-s btn-sm" onclick="showToast('success','报表已导出','今日数据报表已下载')">导出报表</button>
+      <button class="btn btn-p btn-sm" onclick="openModal('modal-new-restaurant')">+ 新增门店</button>
     </div>
+  </div>
 
-    <!-- KPI Strip -->
-    <div class="grid-24 grid-24-lg">
-      <div class="col-6"><div class="kpi-card">
+  <div class="alert alert-warning mb-4">
+    <span>⚠</span>
+    <div><strong>库存预警：</strong>3 款热销菜品库存不足 20 份，请及时补充。<a onclick="nav('menu',document.querySelector('[onclick*=menu]'));return false;" style="color:var(--orange-t);font-weight:600;margin-left:8px;text-decoration:underline;cursor:pointer">查看详情 →</a></div>
+  </div>
+
+  <!-- KPI 横条：4×col-6 -->
+  <div class="grid-24 grid-24-lg mb-5">
+    <div class="col-6">
+      <div class="kpi-card">
         <div class="kpi-icon" style="background:var(--orange-bg)">🛒</div>
         <div class="kpi-value">1,284</div>
         <div class="kpi-label">今日订单总量</div>
-        <div class="kpi-trend"><span class="trend-up">↑ 12.3%</span><span style="color:var(--text-low);font-size:10px">较昨日</span></div>
+        <div class="kpi-trend"><span class="trend-up">↑ 12.3%</span><span style="color:var(--text-low);font-size:10px;margin-left:3px">较昨日</span></div>
       </div>
-      <div class="col-6"><div class="kpi-card">
+    </div>
+    <div class="col-6">
+      <div class="kpi-card">
         <div class="kpi-icon" style="background:var(--amber-2)">💰</div>
         <div class="kpi-value" style="color:var(--amber-11)">¥89,432</div>
         <div class="kpi-label">今日 GMV</div>
-        <div class="kpi-trend"><span class="trend-up">↑ 8.7%</span><span style="color:var(--text-low);font-size:10px">较昨日</span></div>
+        <div class="kpi-trend"><span class="trend-up">↑ 8.7%</span><span style="color:var(--text-low);font-size:10px;margin-left:3px">较昨日</span></div>
       </div>
-      <div class="col-6"><div class="kpi-card">
+    </div>
+    <div class="col-6">
+      <div class="kpi-card">
         <div class="kpi-icon" style="background:var(--green-bg)">🏪</div>
         <div class="kpi-value">48</div>
         <div class="kpi-label">活跃门店</div>
         <div class="kpi-sub">全国共 52 家门店</div>
       </div>
-      <div class="col-6"><div class="kpi-card">
+    </div>
+    <div class="col-6">
+      <div class="kpi-card">
         <div class="kpi-icon" style="background:var(--red-bg)">⚠️</div>
         <div class="kpi-value" style="color:var(--red-t)">12</div>
         <div class="kpi-label">待处理订单</div>
         <div class="kpi-trend"><span class="trend-down">↓ 需紧急处理</span></div>
       </div>
     </div>
+  </div>
 
-    <div class="grid-24 grid-24-lg">
-      <!-- 近7日销售趋势 -->
-      <div class="col-16"><div class="card">
+  <!-- 主双栏：col-16 图表 + col-8 最新订单 -->
+  <div class="grid-24 grid-24-lg mb-5">
+    <div class="col-16">
+      <div class="card">
         <div class="card-header">
           <span class="card-title">近 7 日销售趋势</span>
-          <div style="display:flex;gap:8px">
-            <button class="btn btn-ghost btn-sm" onclick="showToast('info','数据导出','报表生成中...')">导出</button>
-          </div>
+          <button class="btn btn-ghost btn-sm" onclick="showToast('info','导出中','报表生成中…')">导出</button>
         </div>
         <div class="card-body">
           <div class="chart-bars" id="salesChart"></div>
           <div class="chart-labels" id="salesLabels"></div>
-          <div class="chart-legend" style="margin-top:12px">
-            <div class="legend-item"><div class="legend-dot" style="background:var(--amber-9)"></div>销售额（万元）</div>
-            <div class="legend-item"><div class="legend-dot" style="background:var(--blue-s)"></div>订单量（百）</div>
+          <div style="display:flex;gap:16px;margin-top:12px;">
+            <div style="display:flex;align-items:center;gap:5px;font-size:11.5px;color:var(--text-mid)"><div style="width:8px;height:8px;border-radius:50%;background:var(--amber-9)"></div>销售额（万元）</div>
+            <div style="display:flex;align-items:center;gap:5px;font-size:11.5px;color:var(--text-mid)"><div style="width:8px;height:8px;border-radius:50%;background:var(--blue-s)"></div>订单量（百）</div>
           </div>
         </div>
       </div>
-
-      <!-- 最近订单 -->
-      </div><div class="col-8"><div class="card">
+    </div>
+    <div class="col-8">
+      <div class="card">
         <div class="card-header">
           <span class="card-title">最新订单</span>
           <a onclick="nav('orders',document.querySelectorAll('.nav-item')[1])" style="font-size:12px;color:var(--blue-t);cursor:pointer">查看全部 →</a>
@@ -446,420 +388,265 @@ select.input{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xml
         <div class="card-body" style="padding-top:10px">
           <div id="recentOrdersList"></div>
         </div>
-      </div></div>
+      </div>
     </div>
+  </div>
 
-    <!-- Second row: Category + Activity -->
-    <div class="dash-grid" style="margin-top:16px">
-      <div class="col-12"><div class="card">
+  <!-- 次双栏：col-12 + col-12 -->
+  <div class="grid-24 grid-24-lg">
+    <div class="col-12">
+      <div class="card">
         <div class="card-header"><span class="card-title">菜品销量 TOP 5</span></div>
         <div class="card-body" id="topMenuChart"></div>
       </div>
-      </div><div class="col-12"><div class="card">
+    </div>
+    <div class="col-12">
+      <div class="card">
         <div class="card-header"><span class="card-title">最近动态</span></div>
         <div class="card-body" style="padding-top:8px" id="activityFeed"></div>
-      </div></div>
+      </div>
     </div>
   </div>
+</div>
 
-  <!-- ─── ORDERS ─── -->
-  <div class="page" id="page-orders">
-    <div class="page-header">
-      <div>
-        <div class="page-title">订单管理</div>
-        <div class="page-sub">管理所有门店的外卖与堂食订单</div>
-      </div>
-      <div class="page-actions">
-        <button class="btn btn-s btn-sm" onclick="showToast('success','导出成功','订单数据已导出 Excel')">导出</button>
-        <button class="btn btn-p btn-sm" onclick="openModal('modal-new-order')">+ 手动建单</button>
-      </div>
+<!-- ─── ORDERS ─── -->
+<div class="page" id="page-orders">
+  <div class="page-header">
+    <div><div class="page-title">订单管理</div><div class="page-sub">管理所有门店的外卖与堂食订单</div></div>
+    <div class="page-actions">
+      <button class="btn btn-s btn-sm" onclick="showToast('success','导出成功','订单数据已导出')">导出</button>
+      <button class="btn btn-p btn-sm" onclick="openModal('modal-new-order')">+ 手动建单</button>
     </div>
-
-    <!-- Summary bars -->
-    <div class="grid-24" style="margin-bottom:16px">
-      <div class="col-6"><div style="background:var(--orange-bg);border:1px solid var(--orange-bd);border-radius:var(--r4);padding:14px 16px">
-        <div style="font-size:22px;font-weight:700;color:var(--orange-t)">12</div>
-        <div style="font-size:12px;color:var(--orange-t);opacity:.8;margin-top:3px">待接单</div>
-      </div>
-      <div class="col-6"><div style="background:var(--blue-bg);border:1px solid var(--blue-bd);border-radius:var(--r4);padding:14px 16px">
-        <div style="font-size:22px;font-weight:700;color:var(--blue-t)">38</div>
-        <div style="font-size:12px;color:var(--blue-t);opacity:.8;margin-top:3px">配送中</div>
-      </div>
-      <div class="col-6"><div style="background:var(--green-bg);border:1px solid var(--green-bd);border-radius:var(--r4);padding:14px 16px">
-        <div style="font-size:22px;font-weight:700;color:var(--green-t)">1,234</div>
-        <div style="font-size:12px;color:var(--green-t);opacity:.8;margin-top:3px">今日完成</div>
-      </div>
-      <div class="col-6"><div style="background:var(--red-bg);border:1px solid var(--red-bd);border-radius:var(--r4);padding:14px 16px">
-        <div style="font-size:22px;font-weight:700;color:var(--red-t)">5</div>
-        <div style="font-size:12px;color:var(--red-t);opacity:.8;margin-top:3px">待处理退款</div>
-      </div>
-    </div>
-
-    <div class="table-wrap">
+  </div>
+  <!-- 统计条：4×col-6 -->
+  <div class="grid-24 mb-4">
+    <div class="col-6"><div style="background:var(--orange-bg);border:1px solid var(--orange-bd);border-radius:var(--r4);padding:14px 18px"><div style="font-size:22px;font-weight:700;color:var(--orange-t)">12</div><div style="font-size:12px;color:var(--orange-t);opacity:.8;margin-top:3px">待接单</div></div></div>
+    <div class="col-6"><div style="background:var(--blue-bg);border:1px solid var(--blue-bd);border-radius:var(--r4);padding:14px 18px"><div style="font-size:22px;font-weight:700;color:var(--blue-t)">38</div><div style="font-size:12px;color:var(--blue-t);opacity:.8;margin-top:3px">配送中</div></div></div>
+    <div class="col-6"><div style="background:var(--green-bg);border:1px solid var(--green-bd);border-radius:var(--r4);padding:14px 18px"><div style="font-size:22px;font-weight:700;color:var(--green-t)">1,234</div><div style="font-size:12px;color:var(--green-t);opacity:.8;margin-top:3px">今日完成</div></div></div>
+    <div class="col-6"><div style="background:var(--red-bg);border:1px solid var(--red-bd);border-radius:var(--r4);padding:14px 18px"><div style="font-size:22px;font-weight:700;color:var(--red-t)">5</div><div style="font-size:12px;color:var(--red-t);opacity:.8;margin-top:3px">待处理退款</div></div></div>
+  </div>
+  <!-- 表格：col-24 -->
+  <div class="grid-24">
+    <div class="col-24 table-wrap">
       <div class="toolbar">
-        <div class="search-wrap">
-          <span class="search-ico">⌕</span>
-          <input class="toolbar-search" placeholder="搜索订单号、顾客姓名…" oninput="filterOrders(this.value)">
-        </div>
-        <select class="filter-select" onchange="filterOrderStatus(this.value)">
-          <option value="">全部状态</option>
-          <option value="待接单">待接单</option>
-          <option value="配送中">配送中</option>
-          <option value="已完成">已完成</option>
-          <option value="已取消">已取消</option>
-        </select>
-        <select class="filter-select">
-          <option>全部门店</option>
-          <option>北京朝阳旗舰店</option>
-          <option>上海浦东店</option>
-          <option>广州天河店</option>
-        </select>
-        <span class="result-count" id="orderCount">共 20 条</span>
+        <div class="search-wrap"><span class="search-ico">⌕</span><input class="toolbar-search" placeholder="搜索订单号、顾客姓名…" oninput="filterOrders(this.value)"></div>
+        <select class="filter-select" onchange="filterOrderStatus(this.value)"><option value="">全部状态</option><option value="待接单">待接单</option><option value="配送中">配送中</option><option value="已完成">已完成</option><option value="已取消">已取消</option></select>
+        <select class="filter-select"><option>全部门店</option><option>北京朝阳旗舰店</option><option>上海浦东店</option></select>
+        <span class="result-count" id="orderCount">共 12 条</span>
       </div>
-      <table class="tbl" id="ordersTable">
-        <thead><tr>
-          <th>订单号</th><th>顾客</th><th>门店</th><th>金额</th><th>状态</th><th>下单时间</th><th>操作</th>
-        </tr></thead>
-        <tbody id="ordersBody"></tbody>
-      </table>
+      <table class="tbl"><thead><tr><th>订单号</th><th>顾客</th><th>门店</th><th>金额</th><th>状态</th><th>下单时间</th><th>操作</th></tr></thead>
+      <tbody id="ordersBody"></tbody></table>
       <div class="pagination" id="ordersPagination"></div>
     </div>
   </div>
+</div>
 
-  <!-- ─── RESTAURANTS ─── -->
-  <div class="page" id="page-restaurants">
-    <div class="page-header">
-      <div>
-        <div class="page-title">门店管理</div>
-        <div class="page-sub">管理全国 52 家 NearGo 餐厅门店</div>
-      </div>
-      <div class="page-actions">
-        <button class="btn btn-p btn-sm" onclick="openModal('modal-new-restaurant')">+ 新增门店</button>
-      </div>
-    </div>
-
-    <div class="table-wrap">
+<!-- ─── RESTAURANTS ─── -->
+<div class="page" id="page-restaurants">
+  <div class="page-header">
+    <div><div class="page-title">门店管理</div><div class="page-sub">管理全国 52 家 NearGo 餐厅门店</div></div>
+    <div class="page-actions"><button class="btn btn-p btn-sm" onclick="openModal('modal-new-restaurant')">+ 新增门店</button></div>
+  </div>
+  <div class="grid-24">
+    <div class="col-24 table-wrap">
       <div class="toolbar">
-        <div class="search-wrap">
-          <span class="search-ico">⌕</span>
-          <input class="toolbar-search" placeholder="搜索门店名称、城市…" oninput="filterRestaurants(this.value)">
-        </div>
-        <select class="filter-select">
-          <option>全部状态</option>
-          <option>营业中</option>
-          <option>暂停营业</option>
-          <option>待审批</option>
-        </select>
-        <select class="filter-select">
-          <option>全部城市</option>
-          <option>北京</option><option>上海</option><option>广州</option><option>深圳</option>
-        </select>
+        <div class="search-wrap"><span class="search-ico">⌕</span><input class="toolbar-search" placeholder="搜索门店名称、城市…" oninput="filterRestaurants(this.value)"></div>
+        <select class="filter-select"><option>全部状态</option><option>营业中</option><option>暂停营业</option><option>待审批</option></select>
+        <select class="filter-select"><option>全部城市</option><option>北京</option><option>上海</option><option>广州</option><option>深圳</option></select>
         <span class="result-count" id="restCount">共 12 家</span>
       </div>
-      <table class="tbl">
-        <thead><tr>
-          <th>门店编号</th><th>名称</th><th>城市</th><th>类型</th><th>今日营业额</th><th>状态</th><th>操作</th>
-        </tr></thead>
-        <tbody id="restaurantsBody"></tbody>
-      </table>
+      <table class="tbl"><thead><tr><th>门店编号</th><th>名称</th><th>城市</th><th>类型</th><th>今日营业额</th><th>状态</th><th>操作</th></tr></thead>
+      <tbody id="restaurantsBody"></tbody></table>
       <div class="pagination" id="restPagination"></div>
     </div>
   </div>
+</div>
 
-  <!-- ─── MENU ─── -->
-  <div class="page" id="page-menu">
-    <div class="page-header">
-      <div>
-        <div class="page-title">菜品管理</div>
-        <div class="page-sub">管理全部菜单、定价与库存</div>
-      </div>
-      <div class="page-actions">
-        <button class="btn btn-s btn-sm" onclick="toggleMenuView()">切换视图</button>
-        <button class="btn btn-p btn-sm" onclick="openModal('modal-new-dish')">+ 新增菜品</button>
-      </div>
-    </div>
-
-    <div class="tabs">
-      <button class="tab-btn active" onclick="switchTab('menu',this,'tab-all')">全部</button>
-      <button class="tab-btn" onclick="switchTab('menu',this,'tab-main')">主菜</button>
-      <button class="tab-btn" onclick="switchTab('menu',this,'tab-drinks')">饮品</button>
-      <button class="tab-btn" onclick="switchTab('menu',this,'tab-snacks')">小食</button>
-      <button class="tab-btn" onclick="switchTab('menu',this,'tab-sets')">套餐</button>
-    </div>
-
-    <div id="menu-card-view">
-      <div class="menu-grid" id="menuGrid"></div>
-    </div>
-    <div id="menu-table-view" class="hidden table-wrap">
-      <table class="tbl"><thead><tr>
-        <th>菜品名称</th><th>分类</th><th>原价</th><th>特价</th><th>库存</th><th>状态</th><th>操作</th>
-      </tr></thead><tbody id="menuTableBody"></tbody></table>
+<!-- ─── MENU ─── -->
+<div class="page" id="page-menu">
+  <div class="page-header">
+    <div><div class="page-title">菜品管理</div><div class="page-sub">管理全部菜单、定价与库存</div></div>
+    <div class="page-actions">
+      <button class="btn btn-s btn-sm" onclick="toggleMenuView()">切换视图</button>
+      <button class="btn btn-p btn-sm" onclick="openModal('modal-new-dish')">+ 新增菜品</button>
     </div>
   </div>
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab(this)">全部</button>
+    <button class="tab-btn" onclick="switchTab(this)">主菜</button>
+    <button class="tab-btn" onclick="switchTab(this)">饮品</button>
+    <button class="tab-btn" onclick="switchTab(this)">小食</button>
+    <button class="tab-btn" onclick="switchTab(this)">套餐</button>
+  </div>
+  <div id="menu-card-view"><div class="menu-grid" id="menuGrid"></div></div>
+  <div id="menu-table-view" class="hidden table-wrap">
+    <table class="tbl"><thead><tr><th>菜品名称</th><th>分类</th><th>原价</th><th>特价</th><th>库存</th><th>状态</th><th>操作</th></tr></thead>
+    <tbody id="menuTableBody"></tbody></table>
+  </div>
+</div>
 
-  <!-- ─── STAFF ─── -->
-  <div class="page" id="page-staff">
-    <div class="page-header">
-      <div>
-        <div class="page-title">员工管理</div>
-        <div class="page-sub">管理门店员工账号与权限</div>
-      </div>
-      <div class="page-actions">
-        <button class="btn btn-p btn-sm" onclick="openModal('modal-new-staff')">+ 新增员工</button>
-      </div>
-    </div>
-
-    <div class="table-wrap">
+<!-- ─── STAFF ─── -->
+<div class="page" id="page-staff">
+  <div class="page-header">
+    <div><div class="page-title">员工管理</div><div class="page-sub">管理门店员工账号与权限</div></div>
+    <div class="page-actions"><button class="btn btn-p btn-sm" onclick="openModal('modal-new-staff')">+ 新增员工</button></div>
+  </div>
+  <div class="grid-24">
+    <div class="col-24 table-wrap">
       <div class="toolbar">
-        <div class="search-wrap"><span class="search-ico">⌕</span>
-          <input class="toolbar-search" placeholder="搜索姓名、工号…"></div>
+        <div class="search-wrap"><span class="search-ico">⌕</span><input class="toolbar-search" placeholder="搜索姓名、工号…"></div>
         <select class="filter-select"><option>全部角色</option><option>店长</option><option>收银员</option><option>厨师</option></select>
-        <select class="filter-select"><option>全部门店</option><option>北京朝阳旗舰店</option><option>上海浦东店</option></select>
         <span class="result-count">共 86 名</span>
       </div>
-      <table class="tbl">
-        <thead><tr><th>工号</th><th>姓名</th><th>角色</th><th>所属门店</th><th>手机号</th><th>状态</th><th>操作</th></tr></thead>
-        <tbody id="staffBody"></tbody>
-      </table>
+      <table class="tbl"><thead><tr><th>工号</th><th>姓名</th><th>角色</th><th>所属门店</th><th>手机号</th><th>状态</th><th>操作</th></tr></thead>
+      <tbody id="staffBody"></tbody></table>
       <div class="pagination" id="staffPagination"></div>
     </div>
   </div>
+</div>
 
-  <!-- ─── PROMOTIONS ─── -->
-  <div class="page" id="page-promotions">
-    <div class="page-header">
-      <div><div class="page-title">优惠活动</div>
-      <div class="page-sub">创建与管理促销活动</div></div>
-      <div class="page-actions">
-        <button class="btn btn-brand btn-sm" onclick="openModal('modal-new-promo')">🎁 创建活动</button>
-      </div>
-    </div>
-    <div class="alert alert-info"><span>ℹ</span><div>品牌色（#FFA902）专属促销区域 — 本页面验证品牌色在营销场景下的克制使用（≤10% 视觉面积）</div></div>
-    <div class="grid-24" id="promoCards"></div>
+<!-- ─── PROMOTIONS ─── -->
+<div class="page" id="page-promotions">
+  <div class="page-header">
+    <div><div class="page-title">优惠活动</div><div class="page-sub">创建与管理促销活动</div></div>
+    <div class="page-actions"><button class="btn btn-brand btn-sm" onclick="openModal('modal-new-promo')">🎁 创建活动</button></div>
   </div>
+  <div class="alert alert-info mb-4"><span>ℹ</span><div>品牌色（#FFA902）专属营销区 — 验证品牌色克制使用（每屏 ≤10% 面积）</div></div>
+  <!-- 优惠活动：3×col-8 -->
+  <div class="grid-24" id="promoCards"></div>
+</div>
 
-  <!-- ─── REPORTS ─── -->
-  <div class="page" id="page-reports">
-    <div class="page-header">
-      <div><div class="page-title">数据报表</div>
-      <div class="page-sub">多维度经营数据分析</div></div>
-      <div class="page-actions">
-        <select class="filter-select">
-          <option>近 7 天</option><option>近 30 天</option><option>近 90 天</option>
-        </select>
-        <button class="btn btn-p btn-sm" onclick="showToast('success','报表导出','Excel 已生成并下载')">导出</button>
-      </div>
-    </div>
-    <div class="grid-24">
-      <div class="col-12"><div class="card"><div class="card-header"><span class="card-title">门店销售排行</span></div>
-        <div class="card-body" id="storeRankChart"></div></div>
-      </div><div class="col-12"><div class="card"><div class="card-header"><span class="card-title">订单类型分布</span></div>
-        <div class="card-body" id="orderTypeChart"></div></div>
+<!-- ─── REPORTS ─── -->
+<div class="page" id="page-reports">
+  <div class="page-header">
+    <div><div class="page-title">数据报表</div><div class="page-sub">多维度经营数据分析</div></div>
+    <div class="page-actions">
+      <select class="filter-select"><option>近 7 天</option><option>近 30 天</option><option>近 90 天</option></select>
+      <button class="btn btn-p btn-sm" onclick="showToast('success','报表导出','Excel 已生成并下载')">导出</button>
     </div>
   </div>
+  <!-- 报表：col-12 + col-12 -->
+  <div class="grid-24 grid-24-lg">
+    <div class="col-12"><div class="card"><div class="card-header"><span class="card-title">门店销售排行</span></div><div class="card-body" id="storeRankChart"></div></div></div>
+    <div class="col-12"><div class="card"><div class="card-header"><span class="card-title">订单类型分布</span></div><div class="card-body" id="orderTypeChart"></div></div></div>
+  </div>
+</div>
 
-</main><!-- /oms-content -->
+</main>
 </div><!-- /oms-shell -->
 
 <!-- ══ MODALS ══ -->
-
-<!-- New Restaurant Modal -->
 <div class="modal-overlay hidden" id="modal-new-restaurant">
   <div class="modal">
-    <div class="modal-header">
-      <div><div class="modal-title">新增门店</div><div style="font-size:12px;color:var(--text-low);margin-top:3px">填写信息后提交将进入审批流程</div></div>
-      <button class="modal-close" onclick="closeModal('modal-new-restaurant')">✕</button>
-    </div>
+    <div class="modal-header"><div><div class="modal-title">新增门店</div><div style="font-size:12px;color:var(--text-low);margin-top:3px">填写信息后提交将进入审批流程</div></div><button class="modal-close" onclick="closeModal('modal-new-restaurant')">✕</button></div>
     <div class="modal-body">
-      <div class="form-section">
-        <div class="form-section-title">基本信息</div>
-        <div class="form-section-desc">门店的基础档案数据</div>
+      <div class="form-section"><div class="form-section-title">基本信息</div><div class="form-section-desc">门店基础档案数据</div>
         <div class="form-grid">
-          <div class="field"><label class="field-label">门店名称 <span class="req">*</span></label>
-            <input class="input" id="rest-name" placeholder="例：北京朝阳旗舰店" oninput="clearErr(this)">
-            <div class="field-err hidden" id="rest-name-err">请填写门店名称</div></div>
-          <div class="field"><label class="field-label">门店编码 <span class="req">*</span></label>
-            <input class="input" id="rest-code" placeholder="例：BJ-CHAOYANG-001"><div class="field-hint">格式：城市缩写-区域-编号</div></div>
-          <div class="field"><label class="field-label">门店类型 <span class="req">*</span></label>
-            <select class="input"><option value="">请选择</option><option>旗舰店</option><option>标准店</option><option>快闪店</option><option>社区店</option></select></div>
-          <div class="field"><label class="field-label">营业面积（㎡）</label>
-            <input class="input" type="number" placeholder="例：320"></div>
-          <div class="field" style="grid-column:1/-1"><label class="field-label">门店地址 <span class="req">*</span></label>
-            <input class="input" placeholder="例：北京市朝阳区建国路 93 号万达广场 F3-01"></div>
-          <div class="field"><label class="field-label">营业时间 <span class="req">*</span></label>
-            <input class="input" placeholder="例：10:00 - 22:00"></div>
-          <div class="field"><label class="field-label">预计开业日期</label>
-            <input class="input" type="date"></div>
+          <div class="field"><label class="field-label">门店名称 <span class="req">*</span></label><input class="input" id="rest-name" placeholder="例：北京朝阳旗舰店" oninput="clearErr(this)"><div class="field-err hidden" id="rest-name-err">请填写门店名称</div></div>
+          <div class="field"><label class="field-label">门店编码 <span class="req">*</span></label><input class="input" id="rest-code" placeholder="例：BJ-CHAOYANG-001"><div class="field-hint">格式：城市缩写-区域-编号</div></div>
+          <div class="field"><label class="field-label">门店类型 <span class="req">*</span></label><select class="input"><option value="">请选择</option><option>旗舰店</option><option>标准店</option><option>快闪店</option><option>社区店</option></select></div>
+          <div class="field"><label class="field-label">营业面积（㎡）</label><input class="input" type="number" placeholder="320"></div>
+          <div class="field" style="grid-column:1/-1"><label class="field-label">门店地址 <span class="req">*</span></label><input class="input" placeholder="例：北京市朝阳区建国路93号万达广场F3-01"></div>
+          <div class="field"><label class="field-label">营业时间</label><input class="input" placeholder="例：10:00 - 22:00"></div>
+          <div class="field"><label class="field-label">预计开业日期</label><input class="input" type="date"></div>
         </div>
       </div>
-      <div class="form-section">
-        <div class="form-section-title">负责人信息</div>
+      <div class="form-section"><div class="form-section-title">负责人信息</div>
         <div class="form-grid">
-          <div class="field"><label class="field-label">店长姓名 <span class="req">*</span></label>
-            <input class="input" id="rest-mgr" placeholder="例：张伟" oninput="clearErr(this)">
-            <div class="field-err hidden" id="rest-mgr-err">请填写店长姓名</div></div>
-          <div class="field"><label class="field-label">联系电话 <span class="req">*</span></label>
-            <input class="input" id="rest-phone" type="tel" placeholder="例：13912345678" oninput="clearErr(this)">
-            <div class="field-err hidden" id="rest-phone-err">请填写有效手机号</div></div>
+          <div class="field"><label class="field-label">店长姓名 <span class="req">*</span></label><input class="input" id="rest-mgr" placeholder="例：张伟" oninput="clearErr(this)"><div class="field-err hidden" id="rest-mgr-err">请填写店长姓名</div></div>
+          <div class="field"><label class="field-label">联系电话 <span class="req">*</span></label><input class="input" id="rest-phone" type="tel" placeholder="例：13912345678" oninput="clearErr(this)"><div class="field-err hidden" id="rest-phone-err">请填写有效手机号</div></div>
         </div>
       </div>
     </div>
-    <div class="modal-footer">
-      <button class="btn btn-s btn-md" onclick="closeModal('modal-new-restaurant')">取消</button>
-      <button class="btn btn-p btn-md" onclick="submitNewRestaurant()">提交审批</button>
-    </div>
+    <div class="modal-footer"><button class="btn btn-s btn-md" onclick="closeModal('modal-new-restaurant')">取消</button><button class="btn btn-p btn-md" onclick="submitNewRestaurant()">提交审批</button></div>
   </div>
 </div>
 
-<!-- New Dish Modal -->
 <div class="modal-overlay hidden" id="modal-new-dish">
-  <div class="modal">
-    <div class="modal-header">
-      <div class="modal-title">新增菜品</div>
-      <button class="modal-close" onclick="closeModal('modal-new-dish')">✕</button>
-    </div>
-    <div class="modal-body">
-      <div class="form-grid">
-        <div class="field"><label class="field-label">菜品名称 <span class="req">*</span></label>
-          <input class="input" placeholder="例：招牌红烧肉"></div>
-        <div class="field"><label class="field-label">分类 <span class="req">*</span></label>
-          <select class="input"><option>主菜</option><option>小食</option><option>饮品</option><option>套餐</option></select></div>
-        <div class="field"><label class="field-label">原价（元）<span class="req">*</span></label>
-          <input class="input" type="number" placeholder="38.00"></div>
-        <div class="field"><label class="field-label">特价（元）</label>
-          <input class="input" type="number" placeholder="留空则不参与特价"></div>
-        <div class="field"><label class="field-label">初始库存（份）</label>
-          <input class="input" type="number" placeholder="100"></div>
-        <div class="field"><label class="field-label">卡路里（kcal）</label>
-          <input class="input" type="number" placeholder="480"></div>
-        <div class="field" style="grid-column:1/-1"><label class="field-label">菜品描述</label>
-          <textarea class="input" placeholder="简短介绍食材、口味和特色…"></textarea></div>
-      </div>
-    </div>
-    <div class="modal-footer">
-      <button class="btn btn-s btn-md" onclick="closeModal('modal-new-dish')">取消</button>
-      <button class="btn btn-p btn-md" onclick="submitNewDish()">保存</button>
-    </div>
+  <div class="modal"><div class="modal-header"><div class="modal-title">新增菜品</div><button class="modal-close" onclick="closeModal('modal-new-dish')">✕</button></div>
+    <div class="modal-body"><div class="form-grid">
+      <div class="field"><label class="field-label">菜品名称 <span class="req">*</span></label><input class="input" placeholder="例：招牌红烧肉"></div>
+      <div class="field"><label class="field-label">分类</label><select class="input"><option>主菜</option><option>小食</option><option>饮品</option><option>套餐</option></select></div>
+      <div class="field"><label class="field-label">原价（元）</label><input class="input" type="number" placeholder="38.00"></div>
+      <div class="field"><label class="field-label">特价（元）</label><input class="input" type="number" placeholder="留空则不参与特价"></div>
+      <div class="field"><label class="field-label">初始库存（份）</label><input class="input" type="number" placeholder="100"></div>
+      <div class="field"><label class="field-label">卡路里（kcal）</label><input class="input" type="number" placeholder="480"></div>
+      <div class="field" style="grid-column:1/-1"><label class="field-label">菜品描述</label><textarea class="input" placeholder="简短介绍食材、口味和特色…"></textarea></div>
+    </div></div>
+    <div class="modal-footer"><button class="btn btn-s btn-md" onclick="closeModal('modal-new-dish')">取消</button><button class="btn btn-p btn-md" onclick="closeModal('modal-new-dish');showToast('success','菜品已添加','新菜品已保存')">保存</button></div>
   </div>
 </div>
 
-<!-- Order Detail Modal -->
 <div class="modal-overlay hidden" id="modal-order-detail">
-  <div class="modal modal-lg">
-    <div class="modal-header">
-      <div><div class="modal-title" id="modal-order-title">订单详情</div>
-      <div style="font-size:12px;color:var(--text-low);margin-top:2px" id="modal-order-subtitle"></div></div>
-      <button class="modal-close" onclick="closeModal('modal-order-detail')">✕</button>
-    </div>
-    <div class="modal-body" id="modal-order-body"></div>
-    <div class="modal-footer" id="modal-order-footer"></div>
-  </div>
+  <div class="modal modal-lg"><div class="modal-header"><div><div class="modal-title" id="modal-order-title">订单详情</div><div style="font-size:12px;color:var(--text-low);margin-top:2px" id="modal-order-subtitle"></div></div><button class="modal-close" onclick="closeModal('modal-order-detail')">✕</button></div>
+  <div class="modal-body" id="modal-order-body"></div><div class="modal-footer" id="modal-order-footer"></div></div>
 </div>
 
-<!-- New Staff Modal -->
 <div class="modal-overlay hidden" id="modal-new-staff">
-  <div class="modal">
-    <div class="modal-header"><div class="modal-title">新增员工</div>
-      <button class="modal-close" onclick="closeModal('modal-new-staff')">✕</button></div>
-    <div class="modal-body">
-      <div class="form-grid">
-        <div class="field"><label class="field-label">姓名 <span class="req">*</span></label><input class="input" placeholder="请输入"></div>
-        <div class="field"><label class="field-label">手机号 <span class="req">*</span></label><input class="input" type="tel" placeholder="请输入"></div>
-        <div class="field"><label class="field-label">角色 <span class="req">*</span></label>
-          <select class="input"><option>店长</option><option>收银员</option><option>厨师</option><option>服务员</option><option>配送员</option></select></div>
-        <div class="field"><label class="field-label">所属门店 <span class="req">*</span></label>
-          <select class="input"><option>北京朝阳旗舰店</option><option>上海浦东店</option></select></div>
-      </div>
-    </div>
-    <div class="modal-footer">
-      <button class="btn btn-s btn-md" onclick="closeModal('modal-new-staff')">取消</button>
-      <button class="btn btn-p btn-md" onclick="closeModal('modal-new-staff');showToast('success','员工已添加','账号信息已发送至员工手机')">保存</button>
-    </div>
+  <div class="modal"><div class="modal-header"><div class="modal-title">新增员工</div><button class="modal-close" onclick="closeModal('modal-new-staff')">✕</button></div>
+    <div class="modal-body"><div class="form-grid">
+      <div class="field"><label class="field-label">姓名 <span class="req">*</span></label><input class="input" placeholder="请输入"></div>
+      <div class="field"><label class="field-label">手机号 <span class="req">*</span></label><input class="input" type="tel" placeholder="请输入"></div>
+      <div class="field"><label class="field-label">角色</label><select class="input"><option>店长</option><option>收银员</option><option>厨师</option><option>服务员</option></select></div>
+      <div class="field"><label class="field-label">所属门店</label><select class="input"><option>北京朝阳旗舰店</option><option>上海浦东店</option></select></div>
+    </div></div>
+    <div class="modal-footer"><button class="btn btn-s btn-md" onclick="closeModal('modal-new-staff')">取消</button><button class="btn btn-p btn-md" onclick="closeModal('modal-new-staff');showToast('success','员工已添加','账号信息已发送至员工手机')">保存</button></div>
   </div>
 </div>
 
-<!-- New Order Modal -->
 <div class="modal-overlay hidden" id="modal-new-order">
-  <div class="modal"><div class="modal-header"><div class="modal-title">手动建单</div>
-    <button class="modal-close" onclick="closeModal('modal-new-order')">✕</button></div>
-    <div class="modal-body">
-      <div class="form-grid">
-        <div class="field"><label class="field-label">顾客姓名</label><input class="input" placeholder="请输入"></div>
-        <div class="field"><label class="field-label">联系电话</label><input class="input" placeholder="请输入"></div>
-        <div class="field"><label class="field-label">门店 <span class="req">*</span></label>
-          <select class="input"><option>北京朝阳旗舰店</option></select></div>
-        <div class="field"><label class="field-label">订单类型</label>
-          <select class="input"><option>堂食</option><option>外卖</option><option>自取</option></select></div>
-        <div class="field" style="grid-column:1/-1"><label class="field-label">备注</label>
-          <textarea class="input" placeholder="特殊要求、过敏信息…"></textarea></div>
-      </div>
-    </div>
-    <div class="modal-footer">
-      <button class="btn btn-s" onclick="closeModal('modal-new-order')">取消</button>
-      <button class="btn btn-p" onclick="closeModal('modal-new-order');showToast('success','订单已创建','ORD-'+Date.now().toString().slice(-6)+' 已进入待接单队列')">创建订单</button>
-    </div>
+  <div class="modal"><div class="modal-header"><div class="modal-title">手动建单</div><button class="modal-close" onclick="closeModal('modal-new-order')">✕</button></div>
+    <div class="modal-body"><div class="form-grid">
+      <div class="field"><label class="field-label">顾客姓名</label><input class="input" placeholder="请输入"></div>
+      <div class="field"><label class="field-label">联系电话</label><input class="input" placeholder="请输入"></div>
+      <div class="field"><label class="field-label">门店</label><select class="input"><option>北京朝阳旗舰店</option></select></div>
+      <div class="field"><label class="field-label">订单类型</label><select class="input"><option>堂食</option><option>外卖</option><option>自取</option></select></div>
+      <div class="field" style="grid-column:1/-1"><label class="field-label">备注</label><textarea class="input" placeholder="特殊要求…"></textarea></div>
+    </div></div>
+    <div class="modal-footer"><button class="btn btn-s btn-md" onclick="closeModal('modal-new-order')">取消</button><button class="btn btn-p btn-md" onclick="closeModal('modal-new-order');showToast('success','订单已创建','进入待接单队列')">创建订单</button></div>
   </div>
 </div>
 
-<!-- Promo Modal -->
 <div class="modal-overlay hidden" id="modal-new-promo">
-  <div class="modal"><div class="modal-header"><div class="modal-title">创建优惠活动</div>
-    <button class="modal-close" onclick="closeModal('modal-new-promo')">✕</button></div>
-    <div class="modal-body">
-      <div class="form-grid">
-        <div class="field" style="grid-column:1/-1"><label class="field-label">活动名称 <span class="req">*</span></label><input class="input" placeholder="例：双十一全场八折"></div>
-        <div class="field"><label class="field-label">折扣类型</label>
-          <select class="input"><option>折扣券</option><option>满减券</option><option>赠品</option><option>限时特价</option></select></div>
-        <div class="field"><label class="field-label">折扣力度</label><input class="input" placeholder="例：80%折扣 或 满100减20"></div>
-        <div class="field"><label class="field-label">开始时间</label><input class="input" type="datetime-local"></div>
-        <div class="field"><label class="field-label">结束时间</label><input class="input" type="datetime-local"></div>
-      </div>
-    </div>
-    <div class="modal-footer">
-      <button class="btn btn-s" onclick="closeModal('modal-new-promo')">取消</button>
-      <button class="btn btn-brand btn-md" onclick="closeModal('modal-new-promo');showToast('success','活动已创建','优惠活动将在设定时间自动开启')">🎁 发布活动</button>
-    </div>
+  <div class="modal"><div class="modal-header"><div class="modal-title">创建优惠活动</div><button class="modal-close" onclick="closeModal('modal-new-promo')">✕</button></div>
+    <div class="modal-body"><div class="form-grid">
+      <div class="field" style="grid-column:1/-1"><label class="field-label">活动名称 <span class="req">*</span></label><input class="input" placeholder="例：双十一全场八折"></div>
+      <div class="field"><label class="field-label">折扣类型</label><select class="input"><option>折扣券</option><option>满减券</option><option>限时特价</option></select></div>
+      <div class="field"><label class="field-label">折扣力度</label><input class="input" placeholder="例：满100减20"></div>
+      <div class="field"><label class="field-label">开始时间</label><input class="input" type="datetime-local"></div>
+      <div class="field"><label class="field-label">结束时间</label><input class="input" type="datetime-local"></div>
+    </div></div>
+    <div class="modal-footer"><button class="btn btn-s btn-md" onclick="closeModal('modal-new-promo')">取消</button><button class="btn btn-brand btn-md" onclick="closeModal('modal-new-promo');showToast('success','活动已创建','优惠活动将在设定时间自动开启')">🎁 发布活动</button></div>
   </div>
 </div>
 
-<!-- Confirm Delete Modal -->
 <div class="modal-overlay hidden" id="modal-confirm-delete">
   <div class="modal" style="max-width:400px">
-    <div class="modal-header">
-      <div><div class="modal-title" style="color:var(--red-t)">确认删除</div></div>
-      <button class="modal-close" onclick="closeModal('modal-confirm-delete')">✕</button>
-    </div>
+    <div class="modal-header"><div><div class="modal-title" style="color:var(--red-t)">确认删除</div></div><button class="modal-close" onclick="closeModal('modal-confirm-delete')">✕</button></div>
     <div class="modal-body"><p style="font-size:14px;color:var(--text-mid)" id="confirm-delete-msg">确定要删除这条记录吗？此操作不可撤销。</p></div>
-    <div class="modal-footer">
-      <button class="btn btn-s btn-md" onclick="closeModal('modal-confirm-delete')">取消</button>
-      <button class="btn btn-d btn-md" onclick="execDelete()">确认删除</button>
-    </div>
+    <div class="modal-footer"><button class="btn btn-s btn-md" onclick="closeModal('modal-confirm-delete')">取消</button><button class="btn btn-d btn-md" onclick="execDelete()">确认删除</button></div>
   </div>
 </div>
 
-<!-- ══ TOAST VIEWPORT ══ -->
 <div class="toast-viewport" id="toastViewport"></div>
 
 <script>
-// ═══════════════════════════════════════════════════════
-// MOCK DATA
-// ═══════════════════════════════════════════════════════
-const ORDERS = [
-  {id:'ORD-240601-001',customer:'李明',store:'北京朝阳旗舰店',amount:'¥128.50',status:'配送中',time:'09:15:32',items:['招牌红烧肉×2','米饭×2','饮料×2'],address:'朝阳区建国路 93 号'},
-  {id:'ORD-240601-002',customer:'王芳',store:'上海浦东店',amount:'¥89.00',status:'已完成',time:'09:12:44',items:['夫妻肺片×1','炒饭×1'],address:'浦东新区张江路 18 号'},
-  {id:'ORD-240601-003',customer:'张强',store:'广州天河店',amount:'¥215.00',status:'待接单',time:'09:18:01',items:['家庭套餐×1','加料×3'],address:'天河区珠江新城'},
-  {id:'ORD-240601-004',customer:'刘洋',store:'北京朝阳旗舰店',amount:'¥56.00',status:'待接单',time:'09:20:15',items:['小碗菜×3','汤×1'],address:'朝阳区望京 SOHO'},
+// ═══ DATA ═══════════════════════════════════════════════════
+const ORDERS=[
+  {id:'ORD-240601-001',customer:'李明',store:'北京朝阳旗舰店',amount:'¥128.50',status:'配送中',time:'09:15:32',items:['招牌红烧肉×2','米饭×2','饮料×2'],address:'朝阳区建国路93号'},
+  {id:'ORD-240601-002',customer:'王芳',store:'上海浦东店',amount:'¥89.00',status:'已完成',time:'09:12:44',items:['夫妻肺片×1','炒饭×1'],address:'浦东新区张江路18号'},
+  {id:'ORD-240601-003',customer:'张强',store:'广州天河店',amount:'¥215.00',status:'待接单',time:'09:18:01',items:['家庭套餐×1'],address:'天河区珠江新城'},
+  {id:'ORD-240601-004',customer:'刘洋',store:'北京朝阳旗舰店',amount:'¥56.00',status:'待接单',time:'09:20:15',items:['小碗菜×3','汤×1'],address:'朝阳区望京SOHO'},
   {id:'ORD-240601-005',customer:'陈静',store:'深圳福田店',amount:'¥342.00',status:'已取消',time:'08:55:11',items:['大桌宴席套餐×1'],address:'福田区华强北路'},
   {id:'ORD-240601-006',customer:'赵磊',store:'上海浦东店',amount:'¥67.50',status:'配送中',time:'09:22:30',items:['外卖套餐A×2'],address:'浦东新区世纪大道'},
-  {id:'ORD-240601-007',customer:'孙梅',store:'北京海淀店',amount:'¥98.00',status:'已完成',time:'09:05:44',items:['商务午餐×2','饮品×2'],address:'海淀区中关村大街'},
+  {id:'ORD-240601-007',customer:'孙梅',store:'北京海淀店',amount:'¥98.00',status:'已完成',time:'09:05:44',items:['商务午餐×2'],address:'海淀区中关村大街'},
   {id:'ORD-240601-008',customer:'吴斌',store:'广州番禺店',amount:'¥155.00',status:'待接单',time:'09:25:01',items:['火锅套餐×2'],address:'番禺区大学城'},
-  {id:'ORD-240601-009',customer:'郑云',store:'上海静安店',amount:'¥43.00',status:'已完成',time:'08:48:22',items:['早餐套餐×1','豆浆×1'],address:'静安区南京西路'},
-  {id:'ORD-240601-010',customer:'周娜',store:'北京朝阳旗舰店',amount:'¥189.00',status:'配送中',time:'09:28:55',items:['家庭套餐×1','甜品×4'],address:'朝阳区三里屯'},
+  {id:'ORD-240601-009',customer:'郑云',store:'上海静安店',amount:'¥43.00',status:'已完成',time:'08:48:22',items:['早餐套餐×1'],address:'静安区南京西路'},
+  {id:'ORD-240601-010',customer:'周娜',store:'北京朝阳旗舰店',amount:'¥189.00',status:'配送中',time:'09:28:55',items:['家庭套餐×1'],address:'朝阳区三里屯'},
   {id:'ORD-240601-011',customer:'黄峰',store:'深圳南山店',amount:'¥76.00',status:'已完成',time:'08:30:10',items:['午餐套餐×2'],address:'南山区科技园'},
   {id:'ORD-240601-012',customer:'林雪',store:'广州天河店',amount:'¥220.00',status:'待接单',time:'09:31:44',items:['晚宴套餐×2'],address:'天河区体育西路'},
 ];
-
-const RESTAURANTS = [
+const RESTAURANTS=[
   {id:'REST-001',name:'北京朝阳旗舰店',city:'北京',type:'旗舰店',revenue:'¥12,430',status:'营业中'},
   {id:'REST-002',name:'北京海淀店',city:'北京',type:'标准店',revenue:'¥8,210',status:'营业中'},
   {id:'REST-003',name:'北京西城店',city:'北京',type:'社区店',revenue:'¥5,100',status:'营业中'},
@@ -873,8 +660,7 @@ const RESTAURANTS = [
   {id:'REST-011',name:'成都锦江店',city:'成都',type:'标准店',revenue:'¥6,400',status:'营业中'},
   {id:'REST-012',name:'杭州西湖店',city:'杭州',type:'旗舰店',revenue:'¥10,120',status:'营业中'},
 ];
-
-const DISHES = [
+const DISHES=[
   {name:'招牌红烧肉',cat:'主菜',price:'¥38',special:'¥28',stock:85,status:'上架',emoji:'🥩'},
   {name:'夫妻肺片',cat:'主菜',price:'¥32',special:'',stock:62,status:'上架',emoji:'🥗'},
   {name:'麻辣香锅',cat:'主菜',price:'¥58',special:'¥45',stock:40,status:'上架',emoji:'🍲'},
@@ -883,147 +669,84 @@ const DISHES = [
   {name:'宫保鸡丁',cat:'主菜',price:'¥28',special:'¥22',stock:90,status:'上架',emoji:'🍗'},
   {name:'珍珠奶茶',cat:'饮品',price:'¥18',special:'¥12',stock:200,status:'上架',emoji:'🧋'},
   {name:'柠檬水',cat:'饮品',price:'¥15',special:'',stock:150,status:'上架',emoji:'🍋'},
-  {name:'黑糖冰沙',cat:'饮品',price:'¥22',special:'',stock:80,status:'上架',emoji:'🧊'},
   {name:'炸薯条',cat:'小食',price:'¥12',special:'',stock:120,status:'上架',emoji:'🍟'},
-  {name:'蒜香面包',cat:'小食',price:'¥8',special:'',stock:60,status:'上架',emoji:'🥖'},
   {name:'双人套餐A',cat:'套餐',price:'¥88',special:'¥68',stock:50,status:'热销',emoji:'🍱'},
 ];
-
-const STAFF = [
+const STAFF=[
   {id:'EMP-001',name:'张建国',role:'店长',store:'北京朝阳旗舰店',phone:'138****5678',status:'在职'},
   {id:'EMP-002',name:'李小红',role:'收银员',store:'北京朝阳旗舰店',phone:'139****1234',status:'在职'},
   {id:'EMP-003',name:'王大厨',role:'厨师',store:'上海浦东店',phone:'135****9012',status:'在职'},
   {id:'EMP-004',name:'刘配送',role:'配送员',store:'广州天河店',phone:'136****3456',status:'离职'},
   {id:'EMP-005',name:'赵服务',role:'服务员',store:'深圳福田店',phone:'137****7890',status:'在职'},
   {id:'EMP-006',name:'陈店长',role:'店长',store:'上海静安店',phone:'150****2345',status:'在职'},
-  {id:'EMP-007',name:'孙收银',role:'收银员',store:'北京海淀店',phone:'151****6789',status:'在职'},
-  {id:'EMP-008',name:'吴厨师',role:'厨师',store:'广州番禺店',phone:'152****0123',status:'在职'},
 ];
 
-// ═══════════════════════════════════════════════════════
-// NAVIGATION
-// ═══════════════════════════════════════════════════════
-function nav(pageId, el) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-  const page = document.getElementById('page-' + pageId);
-  if (page) page.classList.add('active');
-  if (el) el.classList.add('active');
+// ═══ HELPERS ════════════════════════════════════════════════
+function statusBadge(s){
+  const m={'配送中':'<span class="badge b-info">● 配送中</span>','待接单':'<span class="badge b-warning">● 待接单</span>','已完成':'<span class="badge b-success">● 已完成</span>','已取消':'<span class="badge b-gray">● 已取消</span>','营业中':'<span class="badge b-success">● 营业中</span>','暂停营业':'<span class="badge b-warning">● 暂停</span>','待审批':'<span class="badge b-info">● 待审批</span>','在职':'<span class="badge b-success">在职</span>','离职':'<span class="badge b-gray">离职</span>','上架':'<span class="badge b-success">上架</span>','热销':'<span class="badge b-brand">热销</span>','库存预警':'<span class="badge b-warning">⚠ 库存低</span>'};
+  return m[s]||`<span class="badge b-gray">${s}</span>`;
+}
+function clearErr(el){el.classList.remove('err');const e=document.getElementById(el.id+'-err');if(e)e.classList.add('hidden');}
+
+// ═══ NAVIGATION ═════════════════════════════════════════════
+function nav(id,el){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  const p=document.getElementById('page-'+id);if(p)p.classList.add('active');
+  if(el)el.classList.add('active');
 }
 
-// ═══════════════════════════════════════════════════════
-// MODAL
-// ═══════════════════════════════════════════════════════
-function openModal(id) {
-  document.getElementById(id).classList.remove('hidden');
-  document.body.style.overflow = 'hidden';
-}
-function closeModal(id) {
-  document.getElementById(id).classList.add('hidden');
-  document.body.style.overflow = '';
-}
-document.querySelectorAll('.modal-overlay').forEach(o => {
-  o.addEventListener('click', e => {
-    if (e.target === o) closeModal(o.id);
-  });
-});
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') {
-    document.querySelectorAll('.modal-overlay:not(.hidden)').forEach(m => closeModal(m.id));
-  }
-});
+// ═══ MODAL ══════════════════════════════════════════════════
+function openModal(id){document.getElementById(id).classList.remove('hidden');document.body.style.overflow='hidden';}
+function closeModal(id){document.getElementById(id).classList.add('hidden');document.body.style.overflow='';}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.modal-overlay:not(.hidden)').forEach(m=>closeModal(m.id));});
 
-// ═══════════════════════════════════════════════════════
-// TOAST
-// ═══════════════════════════════════════════════════════
-function showToast(type, title, desc, duration = 4000) {
-  const vp = document.getElementById('toastViewport');
-  const t = document.createElement('div');
-  t.className = 'toast toast-' + type;
-  t.innerHTML = `<div style="flex:1"><div class="toast-title">${title}</div>${desc?`<div class="toast-desc">${desc}</div>`:''}</div><button class="toast-close" onclick="this.parentElement.remove()">✕</button>`;
+// ═══ TOAST ══════════════════════════════════════════════════
+function showToast(type,title,desc,dur=4000){
+  const vp=document.getElementById('toastViewport');
+  const t=document.createElement('div');
+  t.className=`toast toast-${type}`;
+  t.innerHTML=`<div style="flex:1"><div class="toast-title">${title}</div>${desc?`<div class="toast-desc">${desc}</div>`:''}</div><button class="toast-close" onclick="this.parentElement.remove()">✕</button>`;
   vp.appendChild(t);
-  if (duration > 0) setTimeout(() => t.remove(), duration);
+  if(dur>0)setTimeout(()=>t.remove(),dur);
 }
 
-// ═══════════════════════════════════════════════════════
-// THEME
-// ═══════════════════════════════════════════════════════
-function toggleTheme() {
-  const html = document.documentElement;
-  const isDark = html.getAttribute('data-theme') === 'dark';
-  html.setAttribute('data-theme', isDark ? 'light' : 'dark');
-  document.getElementById('themeBtn').textContent = isDark ? '🌙' : '☀️';
-  showToast('info', isDark ? '已切换至浅色模式' : '已切换至深色模式', '');
+// ═══ THEME ══════════════════════════════════════════════════
+function toggleTheme(){
+  const d=document.documentElement.getAttribute('data-theme')==='dark';
+  document.documentElement.setAttribute('data-theme',d?'light':'dark');
+  document.getElementById('themeBtn').textContent=d?'🌙':'☀️';
+  showToast('info',d?'已切换至浅色模式':'已切换至深色模式','');
 }
 
-// ═══════════════════════════════════════════════════════
-// HELPERS
-// ═══════════════════════════════════════════════════════
-function statusBadge(s) {
-  const m = {
-    '配送中':'<span class="badge b-info">●&nbsp;配送中</span>',
-    '待接单':'<span class="badge b-warning">●&nbsp;待接单</span>',
-    '已完成':'<span class="badge b-success">●&nbsp;已完成</span>',
-    '已取消':'<span class="badge b-gray">●&nbsp;已取消</span>',
-    '营业中':'<span class="badge b-success">●&nbsp;营业中</span>',
-    '暂停营业':'<span class="badge b-warning">●&nbsp;暂停</span>',
-    '待审批':'<span class="badge b-info">●&nbsp;待审批</span>',
-    '在职':'<span class="badge b-success">在职</span>',
-    '离职':'<span class="badge b-gray">离职</span>',
-    '上架':'<span class="badge b-success">上架</span>',
-    '热销':'<span class="badge b-brand">热销</span>',
-    '库存预警':'<span class="badge b-warning">⚠库存低</span>',
-    '已下架':'<span class="badge b-gray">下架</span>',
-  };
-  return m[s] || `<span class="badge b-gray">${s}</span>`;
-}
-
-function clearErr(el) { el.classList.remove('err'); const errEl = document.getElementById(el.id+'-err'); if(errEl) errEl.classList.add('hidden'); }
-
-// ═══════════════════════════════════════════════════════
-// ORDERS TABLE
-// ═══════════════════════════════════════════════════════
-let filteredOrders = [...ORDERS];
-function renderOrders() {
-  const tbody = document.getElementById('ordersBody');
-  tbody.innerHTML = filteredOrders.map(o => `
+// ═══ ORDERS ═════════════════════════════════════════════════
+let filteredOrders=[...ORDERS];
+function renderOrders(){
+  document.getElementById('ordersBody').innerHTML=filteredOrders.map(o=>`
     <tr>
       <td><span class="tbl-id">${o.id}</span></td>
       <td><span class="tbl-main">${o.customer}</span></td>
-      <td style="color:var(--text-mid);font-size:12px">${o.store}</td>
+      <td style="font-size:12px;color:var(--text-mid)">${o.store}</td>
       <td><strong style="color:var(--amber-11)">${o.amount}</strong></td>
       <td>${statusBadge(o.status)}</td>
-      <td><span style="font-family:var(--font-mono);font-size:11.5px;color:var(--text-low)">${o.time}</span></td>
+      <td><span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--text-low)">${o.time}</span></td>
       <td>
         <button class="btn btn-ghost btn-sm" onclick="showOrderDetail('${o.id}')">详情</button>
         ${o.status==='待接单'?`<button class="btn btn-g btn-sm" style="margin-left:4px" onclick="acceptOrder('${o.id}')">接单</button>`:''}
         ${o.status==='待接单'?`<button class="btn btn-d btn-sm" style="margin-left:4px" onclick="confirmDelete('确认取消订单 ${o.id}？')">取消</button>`:''}
       </td>
     </tr>`).join('');
-  document.getElementById('orderCount').textContent = `共 ${filteredOrders.length} 条`;
-  renderPagination('ordersPagination', filteredOrders.length);
+  document.getElementById('orderCount').textContent=`共 ${filteredOrders.length} 条`;
+  renderPagination('ordersPagination',filteredOrders.length);
 }
-function filterOrders(q) {
-  filteredOrders = ORDERS.filter(o => !q || o.id.includes(q) || o.customer.includes(q) || o.store.includes(q));
-  renderOrders();
-}
-function filterOrderStatus(s) {
-  filteredOrders = s ? ORDERS.filter(o => o.status === s) : [...ORDERS];
-  renderOrders();
-}
-function acceptOrder(id) {
-  showToast('success','订单已接单',`${id} 正在配送中`);
-  const o = ORDERS.find(x=>x.id===id);
-  if(o) o.status = '配送中';
-  renderOrders();
-}
-
-function showOrderDetail(id) {
-  const o = ORDERS.find(x=>x.id===id);
-  if(!o) return;
-  document.getElementById('modal-order-title').textContent = '订单详情 — ' + o.id;
-  document.getElementById('modal-order-subtitle').textContent = `${o.customer} · ${o.store} · ${o.time}`;
-  document.getElementById('modal-order-body').innerHTML = `
+function filterOrders(q){filteredOrders=q?ORDERS.filter(o=>o.id.includes(q)||o.customer.includes(q)):[...ORDERS];renderOrders();}
+function filterOrderStatus(s){filteredOrders=s?ORDERS.filter(o=>o.status===s):[...ORDERS];renderOrders();}
+function acceptOrder(id){showToast('success','订单已接单',`${id} 正在配送中`);const o=ORDERS.find(x=>x.id===id);if(o)o.status='配送中';renderOrders();}
+function showOrderDetail(id){
+  const o=ORDERS.find(x=>x.id===id);if(!o)return;
+  document.getElementById('modal-order-title').textContent='订单详情 — '+o.id;
+  document.getElementById('modal-order-subtitle').textContent=`${o.customer} · ${o.store} · ${o.time}`;
+  document.getElementById('modal-order-body').innerHTML=`
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
       <div><div style="font-size:11px;color:var(--text-low);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px">顾客姓名</div><div style="font-size:14px;font-weight:500">${o.customer}</div></div>
       <div><div style="font-size:11px;color:var(--text-low);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px">门店</div><div style="font-size:14px;font-weight:500">${o.store}</div></div>
@@ -1032,22 +755,19 @@ function showOrderDetail(id) {
     </div>
     <div style="background:var(--gray-2);border-radius:var(--r4);padding:14px">
       <div style="font-size:12px;font-weight:600;color:var(--text-hi);margin-bottom:10px">订单商品</div>
-      ${o.items.map(it=>`<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--gray-3);font-size:13px;color:var(--text-mid)"><span>${it}</span></div>`).join('')}
+      ${o.items.map(it=>`<div style="padding:6px 0;border-bottom:1px solid var(--gray-3);font-size:13px;color:var(--text-mid)">${it}</div>`).join('')}
       <div style="display:flex;justify-content:flex-end;margin-top:10px;font-size:16px;font-weight:700;color:var(--amber-11)">${o.amount}</div>
     </div>`;
-  document.getElementById('modal-order-footer').innerHTML = `
+  document.getElementById('modal-order-footer').innerHTML=`
     <button class="btn btn-s btn-md" onclick="closeModal('modal-order-detail')">关闭</button>
-    ${o.status==='待接单'?`<button class="btn btn-g btn-md" onclick="closeModal('modal-order-detail');acceptOrder('${o.id}')">接单配送</button>`:''}
-  `;
+    ${o.status==='待接单'?`<button class="btn btn-g btn-md" onclick="closeModal('modal-order-detail');acceptOrder('${o.id}')">接单配送</button>`:''}`;
   openModal('modal-order-detail');
 }
 
-// ═══════════════════════════════════════════════════════
-// RESTAURANTS TABLE
-// ═══════════════════════════════════════════════════════
-let filteredRests = [...RESTAURANTS];
-function renderRestaurants() {
-  document.getElementById('restaurantsBody').innerHTML = filteredRests.map(r => `
+// ═══ RESTAURANTS ════════════════════════════════════════════
+let filteredRests=[...RESTAURANTS];
+function renderRestaurants(){
+  document.getElementById('restaurantsBody').innerHTML=filteredRests.map(r=>`
     <tr>
       <td><span class="tbl-id">${r.id}</span></td>
       <td><span class="tbl-main">${r.name}</span></td>
@@ -1061,81 +781,62 @@ function renderRestaurants() {
         <button class="btn btn-d btn-sm" style="margin-left:4px" onclick="confirmDelete('确认删除门店 ${r.name}？')">删除</button>
       </td>
     </tr>`).join('');
-  document.getElementById('restCount').textContent = `共 ${filteredRests.length} 家`;
-  renderPagination('restPagination', filteredRests.length);
+  document.getElementById('restCount').textContent=`共 ${filteredRests.length} 家`;
+  renderPagination('restPagination',filteredRests.length);
 }
-function filterRestaurants(q) {
-  filteredRests = q ? RESTAURANTS.filter(r => r.name.includes(q) || r.city.includes(q)) : [...RESTAURANTS];
-  renderRestaurants();
-}
+function filterRestaurants(q){filteredRests=q?RESTAURANTS.filter(r=>r.name.includes(q)||r.city.includes(q)):[...RESTAURANTS];renderRestaurants();}
 
-// ═══════════════════════════════════════════════════════
-// MENU
-// ═══════════════════════════════════════════════════════
-let menuViewCard = true;
-function renderMenu() {
-  // Card view
-  document.getElementById('menuGrid').innerHTML = DISHES.map(d => `
+// ═══ MENU ════════════════════════════════════════════════════
+let menuViewCard=true;
+function renderMenu(){
+  document.getElementById('menuGrid').innerHTML=DISHES.map(d=>`
     <div class="menu-card" onclick="showToast('info','菜品详情','${d.name} 编辑功能开发中')">
       <div class="menu-img">${d.emoji}</div>
       <div class="menu-info">
         <div class="menu-name">${d.name}</div>
-        <div class="menu-cat">${d.cat} &nbsp;·&nbsp; 库存：${d.stock}份</div>
+        <div class="menu-cat">${d.cat} · 库存：${d.stock}份</div>
         <div class="menu-footer">
-          <div class="menu-price">${d.special||d.price}<span>${d.special?' 原价'+d.price:''}</span></div>
+          <div class="menu-price">${d.special||d.price}<span style="font-size:11px;font-weight:400;color:var(--text-low)">${d.special?' 原价'+d.price:''}</span></div>
           ${statusBadge(d.status)}
         </div>
       </div>
-    </div></div>`).join('');
-  // Table view
-  document.getElementById('menuTableBody').innerHTML = DISHES.map(d => `
+    </div>`).join('');
+  document.getElementById('menuTableBody').innerHTML=DISHES.map(d=>`
     <tr>
       <td><div style="display:flex;align-items:center;gap:8px"><span style="font-size:20px">${d.emoji}</span><span class="tbl-main">${d.name}</span></div></td>
       <td><span class="badge b-purple">${d.cat}</span></td>
       <td>${d.price}</td>
       <td>${d.special?`<strong style="color:var(--amber-11)">${d.special}</strong>`:'—'}</td>
-      <td><span style="color:${d.stock<20?'var(--red-t)':'var(--text-mid)';}">${d.stock} 份</span></td>
+      <td><span style="color:${d.stock<20?'var(--red-t)':'var(--text-mid)'}">${d.stock}份</span></td>
       <td>${statusBadge(d.status)}</td>
-      <td>
-        <button class="btn btn-ghost btn-sm" onclick="showToast('info','编辑','${d.name} 编辑中')">编辑</button>
-        <button class="btn btn-d btn-sm" style="margin-left:4px" onclick="confirmDelete('确认下架 ${d.name}？')">下架</button>
-      </td>
+      <td><button class="btn btn-ghost btn-sm" onclick="showToast('info','编辑','${d.name} 编辑中')">编辑</button></td>
     </tr>`).join('');
 }
-function toggleMenuView() {
-  menuViewCard = !menuViewCard;
-  document.getElementById('menu-card-view').classList.toggle('hidden', !menuViewCard);
-  document.getElementById('menu-table-view').classList.toggle('hidden', menuViewCard);
+function toggleMenuView(){
+  menuViewCard=!menuViewCard;
+  document.getElementById('menu-card-view').classList.toggle('hidden',!menuViewCard);
+  document.getElementById('menu-table-view').classList.toggle('hidden',menuViewCard);
 }
-function submitNewDish() { closeModal('modal-new-dish'); showToast('success','菜品已添加','新菜品已保存，可前往菜品列表查看'); renderMenu(); }
+function switchTab(btn){btn.closest('.tabs').querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');}
 
-// ═══════════════════════════════════════════════════════
-// STAFF TABLE
-// ═══════════════════════════════════════════════════════
-function renderStaff() {
-  document.getElementById('staffBody').innerHTML = STAFF.map(s => `
+// ═══ STAFF ═══════════════════════════════════════════════════
+function renderStaff(){
+  document.getElementById('staffBody').innerHTML=STAFF.map(s=>`
     <tr>
       <td><span class="tbl-id">${s.id}</span></td>
-      <td><div style="display:flex;align-items:center;gap:8px">
-        <div style="width:28px;height:28px;border-radius:50%;background:var(--gray-4);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--text-mid)">${s.name[0]}</div>
-        <span class="tbl-main">${s.name}</span></div></td>
+      <td><div style="display:flex;align-items:center;gap:8px"><div style="width:28px;height:28px;border-radius:50%;background:var(--gray-4);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--text-mid)">${s.name[0]}</div><span class="tbl-main">${s.name}</span></div></td>
       <td><span class="badge b-info">${s.role}</span></td>
       <td style="font-size:12px;color:var(--text-mid)">${s.store}</td>
-      <td><span style="font-family:var(--font-mono);font-size:12px;color:var(--text-low)">${s.phone}</span></td>
+      <td><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text-low)">${s.phone}</span></td>
       <td>${statusBadge(s.status)}</td>
-      <td>
-        <button class="btn btn-ghost btn-sm" onclick="showToast('info','员工档案','${s.name} 详细档案查看中')">详情</button>
-        ${s.status==='在职'?`<button class="btn btn-d btn-sm" style="margin-left:4px" onclick="confirmDelete('确认离职处理：${s.name}？')">离职</button>`:''}
-      </td>
+      <td><button class="btn btn-ghost btn-sm" onclick="showToast('info','员工档案','${s.name} 档案查看中')">详情</button></td>
     </tr>`).join('');
-  renderPagination('staffPagination', STAFF.length);
+  renderPagination('staffPagination',STAFF.length);
 }
 
-// ═══════════════════════════════════════════════════════
-// PROMOTIONS
-// ═══════════════════════════════════════════════════════
-function renderPromos() {
-  const promos = [
+// ═══ PROMOTIONS ══════════════════════════════════════════════
+function renderPromos(){
+  const promos=[
     {title:'双十一全场八折',type:'折扣活动',range:'2024/11/1 - 11/11',status:'进行中',badge:'brand',desc:'全场菜品享受8折优惠，外卖订单满60元起'},
     {title:'工作日午餐套餐',type:'套餐活动',range:'工作日 11:00-13:00',status:'长期',badge:'success',desc:'双人午餐套餐特惠价 ¥68，含两菜一汤'},
     {title:'新用户首单立减20',type:'新用户福利',range:'长期有效',status:'长期',badge:'info',desc:'新注册用户首次下单满50元减20元'},
@@ -1143,203 +844,122 @@ function renderPromos() {
     {title:'生日专享优惠',type:'会员权益',range:'生日当月',status:'进行中',badge:'purple',desc:'会员生日当月享受全部菜品9折'},
     {title:'外卖免配送费',type:'配送优惠',range:'2024/12/31前',status:'进行中',badge:'success',desc:'单笔订单满35元，外卖配送费全免'},
   ];
-  document.getElementById('promoCards').innerHTML = promos.map(p => `
-    <div class="col-8"><div class="card" style="cursor:pointer" onclick="showToast('info','活动详情','${p.title} 详情查看中')">
-      <div class="card-body">
-        <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px">
-          <div style="font-size:14px;font-weight:600;color:var(--text-hi)">${p.title}</div>
-          <span class="badge b-${p.badge}" style="flex-shrink:0">${p.status}</span>
-        </div>
-        <div style="font-size:12px;color:var(--text-low);margin-bottom:8px">${p.type} &nbsp;·&nbsp; ${p.range}</div>
-        <div style="font-size:13px;color:var(--text-mid);line-height:1.5">${p.desc}</div>
-        <div style="display:flex;gap:6px;margin-top:12px">
-          <button class="btn btn-s btn-sm" onclick="event.stopPropagation();showToast('info','编辑活动','${p.title} 编辑中')">编辑</button>
-          <button class="btn btn-d btn-sm" onclick="event.stopPropagation();confirmDelete('确认删除活动：${p.title}？')">删除</button>
+  document.getElementById('promoCards').innerHTML=promos.map(p=>`
+    <div class="col-8">
+      <div class="card" style="cursor:pointer" onclick="showToast('info','活动详情','${p.title} 详情查看中')">
+        <div class="card-body">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px">
+            <div style="font-size:14px;font-weight:600;color:var(--text-hi)">${p.title}</div>
+            <span class="badge b-${p.badge}" style="flex-shrink:0">${p.status}</span>
+          </div>
+          <div style="font-size:12px;color:var(--text-low);margin-bottom:8px">${p.type} · ${p.range}</div>
+          <div style="font-size:13px;color:var(--text-mid);line-height:1.5">${p.desc}</div>
+          <div style="display:flex;gap:6px;margin-top:12px">
+            <button class="btn btn-s btn-sm" onclick="event.stopPropagation();showToast('info','编辑活动','${p.title} 编辑中')">编辑</button>
+            <button class="btn btn-d btn-sm" onclick="event.stopPropagation();confirmDelete('确认删除活动：${p.title}？')">删除</button>
+          </div>
         </div>
       </div>
     </div>`).join('');
 }
 
-// ═══════════════════════════════════════════════════════
-// FORM VALIDATION
-// ═══════════════════════════════════════════════════════
-function submitNewRestaurant() {
-  let valid = true;
-  const name = document.getElementById('rest-name');
-  const mgr = document.getElementById('rest-mgr');
-  const phone = document.getElementById('rest-phone');
-  if (!name.value.trim()) { name.classList.add('err'); document.getElementById('rest-name-err').classList.remove('hidden'); valid = false; }
-  if (!mgr.value.trim()) { mgr.classList.add('err'); document.getElementById('rest-mgr-err').classList.remove('hidden'); valid = false; }
-  if (!phone.value.match(/^1[3-9]\d{9}$/)) { phone.classList.add('err'); document.getElementById('rest-phone-err').classList.remove('hidden'); valid = false; }
-  if (!valid) { showToast('danger','提交失败','请检查并修正表单中的必填项'); return; }
-  closeModal('modal-new-restaurant');
-  showToast('success','审批申请已提交',`${name.value} 的门店创建申请已进入审批流程`);
-  name.value=''; mgr.value=''; phone.value='';
-}
-
-// ═══════════════════════════════════════════════════════
-// DELETE CONFIRM
-// ═══════════════════════════════════════════════════════
-let deleteCallback = null;
-function confirmDelete(msg, cb) {
-  document.getElementById('confirm-delete-msg').textContent = msg || '确认删除这条记录吗？此操作不可撤销。';
-  deleteCallback = cb;
-  openModal('modal-confirm-delete');
-}
-function execDelete() {
-  closeModal('modal-confirm-delete');
-  if (deleteCallback) { deleteCallback(); deleteCallback = null; }
-  else showToast('danger','已删除','记录已从系统中移除');
-}
-
-// ═══════════════════════════════════════════════════════
-// TABS
-// ═══════════════════════════════════════════════════════
-function switchTab(page, btn, paneId) {
-  const container = btn.closest('.tabs');
-  container.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-}
-
-// ═══════════════════════════════════════════════════════
-// PAGINATION
-// ═══════════════════════════════════════════════════════
-function renderPagination(containerId, total, pageSize=10) {
-  const pages = Math.ceil(total / pageSize);
-  const container = document.getElementById(containerId);
-  if (!container) return;
-  container.innerHTML = `<span class="pg-total">共 ${total} 条</span>` +
-    `<button class="pg-btn" disabled>‹</button>` +
-    Array.from({length:Math.min(pages,5)},(_,i)=>`<button class="pg-btn${i===0?' active':''}" onclick="showToast('info','翻页',`+`'第'+(i+1)+'页'`+`)">${i+1}</button>`).join('') +
+// ═══ PAGINATION ══════════════════════════════════════════════
+function renderPagination(id,total,size=10){
+  const pages=Math.ceil(total/size);
+  const el=document.getElementById(id);if(!el)return;
+  el.innerHTML=`<span class="pg-total">共 ${total} 条</span>`+
+    `<button class="pg-btn" disabled>‹</button>`+
+    Array.from({length:Math.min(pages,5)},(_,i)=>`<button class="pg-btn${i===0?' active':''}">${i+1}</button>`).join('')+
     (pages>5?`<span style="padding:0 4px;color:var(--text-low)">…</span><button class="pg-btn">${pages}</button>`:'')+
-    `<button class="pg-btn${pages<=1?' ':', '}${pages>1?'':' disabled'}"${pages<=1?' disabled':''}>›</button>` +
-    `<select class="filter-select" style="height:32px;font-size:12px;margin-left:8px"><option>10/页</option><option>20/页</option><option>50/页</option></select>`;
+    `<button class="pg-btn"${pages<=1?' disabled':''}>›</button>`+
+    `<select class="filter-select" style="height:32px;font-size:12px;margin-left:8px"><option>10/页</option><option>20/页</option></select>`;
 }
 
-// ═══════════════════════════════════════════════════════
-// CHARTS
-// ═══════════════════════════════════════════════════════
-function renderSalesChart() {
-  const days = ['05/26','05/27','05/28','05/29','05/30','05/31','06/01'];
-  const sales = [8.2, 9.5, 7.8, 11.2, 10.4, 12.8, 14.1];
-  const orders = [620, 710, 580, 840, 780, 960, 1050];
-  const maxSale = Math.max(...sales);
-  const maxOrd = Math.max(...orders);
+// ═══ DELETE ══════════════════════════════════════════════════
+let deleteCb=null;
+function confirmDelete(msg,cb){document.getElementById('confirm-delete-msg').textContent=msg;deleteCb=cb;openModal('modal-confirm-delete');}
+function execDelete(){closeModal('modal-confirm-delete');if(deleteCb){deleteCb();deleteCb=null;}else showToast('danger','已删除','记录已从系统中移除');}
 
-  document.getElementById('salesChart').innerHTML = days.map((d,i) => `
-    <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;position:relative">
+// ═══ FORM ════════════════════════════════════════════════════
+function submitNewRestaurant(){
+  let ok=true;
+  const n=document.getElementById('rest-name'),m=document.getElementById('rest-mgr'),p=document.getElementById('rest-phone');
+  if(!n.value.trim()){n.classList.add('err');document.getElementById('rest-name-err').classList.remove('hidden');ok=false;}
+  if(!m.value.trim()){m.classList.add('err');document.getElementById('rest-mgr-err').classList.remove('hidden');ok=false;}
+  if(!p.value.match(/^1[3-9]\d{9}$/)){p.classList.add('err');document.getElementById('rest-phone-err').classList.remove('hidden');ok=false;}
+  if(!ok){showToast('danger','提交失败','请检查并修正表单中的必填项');return;}
+  closeModal('modal-new-restaurant');showToast('success','审批申请已提交',`${n.value} 的门店创建申请已进入审批流程`);
+  n.value='';m.value='';p.value='';
+}
+
+// ═══ CHARTS ══════════════════════════════════════════════════
+function renderSalesChart(){
+  const days=['05/26','05/27','05/28','05/29','05/30','05/31','06/01'];
+  const sales=[8.2,9.5,7.8,11.2,10.4,12.8,14.1];const maxS=Math.max(...sales);
+  const orders=[620,710,580,840,780,960,1050];const maxO=Math.max(...orders);
+  document.getElementById('salesChart').innerHTML=days.map((d,i)=>`
+    <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;position:relative">
       <div style="position:absolute;top:-18px;font-size:10px;color:var(--text-low)">¥${sales[i]}w</div>
-      <div class="chart-bar" style="height:${(sales[i]/maxSale)*120}px;background:var(--amber-9);width:100%"></div>
-      <div class="chart-bar" style="height:${(orders[i]/maxOrd)*80}px;background:var(--blue-bg);border:1px solid var(--blue-bd);width:100%;margin-top:2px;border-radius:var(--r2)"></div>
+      <div class="chart-bar" style="height:${(sales[i]/maxS)*110}px;background:var(--amber-9);width:100%"></div>
+      <div class="chart-bar" style="height:${(orders[i]/maxO)*70}px;background:var(--blue-bg);border:1px solid var(--blue-bd);width:100%;border-radius:var(--r2) var(--r2) 0 0"></div>
     </div>`).join('');
-  document.getElementById('salesLabels').innerHTML = days.map(d=>`<div class="chart-label">${d}</div>`).join('');
+  document.getElementById('salesLabels').innerHTML=days.map(d=>`<div class="chart-label">${d}</div>`).join('');
 }
-
-function renderTopMenu() {
-  const items = [
-    {name:'招牌红烧肉',pct:85,color:'var(--amber-9)'},
-    {name:'麻辣香锅',pct:72,color:'var(--orange-s)'},
-    {name:'双人套餐A',pct:68,color:'var(--blue-s)'},
-    {name:'珍珠奶茶',pct:60,color:'var(--purple-s)'},
-    {name:'夫妻肺片',pct:53,color:'var(--green-s)'},
-  ];
-  document.getElementById('topMenuChart').innerHTML = items.map(it=>`
+function renderTopMenu(){
+  const items=[{name:'招牌红烧肉',pct:85,color:'var(--amber-9)'},{name:'麻辣香锅',pct:72,color:'var(--orange-s)'},{name:'双人套餐A',pct:68,color:'var(--blue-s)'},{name:'珍珠奶茶',pct:60,color:'var(--purple-s)'},{name:'夫妻肺片',pct:53,color:'var(--green-s)'}];
+  document.getElementById('topMenuChart').innerHTML=items.map(it=>`
     <div style="margin-bottom:12px">
-      <div style="display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:4px">
-        <span style="color:var(--text-hi)">${it.name}</span>
-        <span style="color:var(--text-low)">${it.pct}%</span>
-      </div>
-      <div style="height:6px;background:var(--gray-3);border-radius:var(--r6);overflow:hidden">
-        <div style="height:100%;width:${it.pct}%;background:${it.color};border-radius:var(--r6);transition:width .6s var(--ease-out)"></div>
-      </div>
+      <div style="display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:4px"><span style="color:var(--text-hi)">${it.name}</span><span style="color:var(--text-low)">${it.pct}%</span></div>
+      <div style="height:6px;background:var(--gray-3);border-radius:var(--r6);overflow:hidden"><div style="height:100%;width:${it.pct}%;background:${it.color};border-radius:var(--r6)"></div></div>
     </div>`).join('');
 }
-
-function renderActivity() {
-  const activities = [
-    {icon:'🛒',title:'北京朝阳旗舰店 新增订单 ORD-240601-010',time:'2分钟前',color:'var(--blue-bg)'},
-    {icon:'✅',title:'上海浦东店 完成配送 ORD-240601-002',time:'5分钟前',color:'var(--green-bg)'},
-    {icon:'⚠️',title:'库存预警：清蒸鲈鱼库存不足20份',time:'12分钟前',color:'var(--orange-bg)'},
-    {icon:'👤',title:'新员工 陈店长 已在上海静安店入职',time:'25分钟前',color:'var(--purple-bg)'},
-    {icon:'🏪',title:'深圳南山店 待审批申请已提交',time:'1小时前',color:'var(--blue-bg)'},
-  ];
-  document.getElementById('activityFeed').innerHTML = activities.map(a=>`
+function renderActivity(){
+  const acts=[{icon:'🛒',title:'北京朝阳旗舰店 新增订单',time:'2分钟前',bg:'var(--blue-bg)'},{icon:'✅',title:'上海浦东店 完成配送',time:'5分钟前',bg:'var(--green-bg)'},{icon:'⚠️',title:'库存预警：清蒸鲈鱼库存不足20份',time:'12分钟前',bg:'var(--orange-bg)'},{icon:'👤',title:'新员工 陈店长 已在上海静安店入职',time:'25分钟前',bg:'var(--purple-bg)'},{icon:'🏪',title:'深圳南山店 待审批申请已提交',time:'1小时前',bg:'var(--blue-bg)'}];
+  document.getElementById('activityFeed').innerHTML=acts.map(a=>`
     <div class="activity-item">
-      <div class="act-dot" style="background:${a.color}">${a.icon}</div>
-      <div class="act-content">
-        <div class="act-title">${a.title}</div>
-        <div class="act-time">${a.time}</div>
-      </div>
+      <div class="act-dot" style="background:${a.bg}">${a.icon}</div>
+      <div><div class="act-title">${a.title}</div><div class="act-time">${a.time}</div></div>
     </div>`).join('');
 }
-
-function renderRecentOrders() {
-  document.getElementById('recentOrdersList').innerHTML = ORDERS.slice(0,5).map(o=>`
+function renderRecentOrders(){
+  document.getElementById('recentOrdersList').innerHTML=ORDERS.slice(0,5).map(o=>`
     <div class="order-list-item">
       <div class="ol-img">🍽️</div>
       <div class="ol-main">
         <div class="ol-name">${o.customer} · ${o.store}</div>
-        <div class="ol-meta">${o.id} &nbsp;·&nbsp; ${o.time}</div>
+        <div class="ol-meta">${o.id} · ${o.time}</div>
       </div>
       <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px">
-        <div class="ol-amount">${o.amount}</div>
+        <div style="font-size:14px;font-weight:600;color:var(--amber-11)">${o.amount}</div>
         ${statusBadge(o.status)}
       </div>
     </div>`).join('');
 }
-
-function renderReports() {
-  const stores = ['北京朝阳','上海浦东','广州天河','深圳福田','上海静安'];
-  const vals = [15680,12430,11240,13900,9340];
-  const maxV = Math.max(...vals);
-  document.getElementById('storeRankChart').innerHTML = stores.map((s,i)=>`
+function renderReports(){
+  const stores=['北京朝阳','上海浦东','广州天河','深圳福田','上海静安'];
+  const vals=[15680,12430,11240,13900,9340];const maxV=Math.max(...vals);
+  document.getElementById('storeRankChart').innerHTML=stores.map((s,i)=>`
     <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
-      <div style="width:90px;font-size:12px;color:var(--text-mid);text-align:right;flex-shrink:0">${s}</div>
+      <div style="width:80px;font-size:12px;color:var(--text-mid);text-align:right;flex-shrink:0">${s}</div>
       <div style="flex:1;height:20px;background:var(--gray-3);border-radius:var(--r6);overflow:hidden">
         <div style="height:100%;width:${(vals[i]/maxV)*100}%;background:var(--amber-9);border-radius:var(--r6);display:flex;align-items:center;justify-content:flex-end;padding-right:6px">
           <span style="font-size:10px;color:var(--amber-12);font-weight:700">¥${(vals[i]/1000).toFixed(1)}k</span>
         </div>
       </div>
     </div>`).join('');
-
-  // Pie chart SVG
-  const types = [{label:'外卖',pct:55,color:'var(--amber-9)'},{label:'堂食',pct:30,color:'var(--blue-s)'},{label:'自取',pct:15,color:'var(--green-s)'}];
-  let svg = `<svg viewBox="0 0 160 160" style="width:140px;height:140px">`;
-  let offset = 0;
-  types.forEach(t => {
-    const dash = t.pct * 5.027;
-    const gap = 502.7 - dash;
-    svg += `<circle cx="80" cy="80" r="60" fill="none" stroke="${t.color}" stroke-width="28" stroke-dasharray="${dash} ${gap}" stroke-dashoffset="${-offset*5.027}" transform="rotate(-90 80 80)"/>`;
-    offset += t.pct;
-  });
-  svg += `<circle cx="80" cy="80" r="46" fill="var(--surface)"/>`;
-  svg += `<text x="80" y="76" text-anchor="middle" font-size="13" font-weight="700" fill="var(--text-hi)">1,284</text>`;
-  svg += `<text x="80" y="90" text-anchor="middle" font-size="10" fill="var(--text-low)">今日订单</text>`;
-  svg += `</svg>`;
-  document.getElementById('orderTypeChart').innerHTML = `
-    <div style="display:flex;align-items:center;gap:20px">
-      ${svg}
-      <div>${types.map(t=>`<div class="legend-item" style="margin-bottom:8px"><div class="legend-dot" style="background:${t.color}"></div><span>${t.label}</span><strong style="margin-left:6px">${t.pct}%</strong></div>`).join('')}</div>
-    </div>`;
+  const types=[{label:'外卖',pct:55,color:'var(--amber-9)'},{label:'堂食',pct:30,color:'var(--blue-s)'},{label:'自取',pct:15,color:'var(--green-s)'}];
+  let svg=`<svg viewBox="0 0 160 160" style="width:140px;height:140px">`;
+  let offset=0;
+  types.forEach(t=>{const dash=t.pct*5.027;const gap=502.7-dash;svg+=`<circle cx="80" cy="80" r="60" fill="none" stroke="${t.color}" stroke-width="28" stroke-dasharray="${dash} ${gap}" stroke-dashoffset="${-offset*5.027}" transform="rotate(-90 80 80)"/>`;offset+=t.pct;});
+  svg+=`<circle cx="80" cy="80" r="46" fill="var(--surface)"/><text x="80" y="76" text-anchor="middle" font-size="13" font-weight="700" fill="var(--text-hi)">1,284</text><text x="80" y="90" text-anchor="middle" font-size="10" fill="var(--text-low)">今日订单</text></svg>`;
+  document.getElementById('orderTypeChart').innerHTML=`<div style="display:flex;align-items:center;gap:20px">${svg}<div>${types.map(t=>`<div style="display:flex;align-items:center;gap:5px;margin-bottom:10px;font-size:12px;color:var(--text-mid)"><div style="width:8px;height:8px;border-radius:50%;background:${t.color}"></div>${t.label} <strong style="margin-left:4px">${t.pct}%</strong></div>`).join('')}</div></div>`;
 }
 
-// ═══════════════════════════════════════════════════════
-// INIT
-// ═══════════════════════════════════════════════════════
-document.addEventListener('DOMContentLoaded', () => {
-  renderOrders();
-  renderRestaurants();
-  renderMenu();
-  renderStaff();
-  renderPromos();
-  renderSalesChart();
-  renderTopMenu();
-  renderActivity();
-  renderRecentOrders();
-  renderReports();
-
-  // Welcome toast
-  setTimeout(()=> showToast('info','欢迎回来，Zoe','今日有 12 个待处理订单需要关注',5000), 800);
+// ═══ INIT ════════════════════════════════════════════════════
+document.addEventListener('DOMContentLoaded',()=>{
+  renderOrders();renderRestaurants();renderMenu();renderStaff();renderPromos();
+  renderSalesChart();renderTopMenu();renderActivity();renderRecentOrders();renderReports();
+  setTimeout(()=>showToast('info','欢迎回来，Zoe','今日有 12 个待处理订单需要关注',5000),800);
 });
 </script>
 </body>
