@@ -84,7 +84,7 @@ body{font-family:'Inter','Noto Sans SC',sans-serif;background:var(--bg);color:va
 .topbar-search{height:32px;width:240px;border:1px solid var(--border);border-radius:var(--r3);padding:0 10px 0 30px;font-size:13px;color:var(--text-hi);background:var(--bg);font-family:inherit;outline:none;transition:border-color var(--dur-norm) var(--ease-out);}
 .topbar-search:focus{border-color:var(--gray-12);box-shadow:0 0 0 2px var(--gray-4);}
 .search-wrap{position:relative;display:flex;align-items:center;}
-.search-ico{position:absolute;left:9px;color:var(--text-dis);font-size:13px;pointer-events:none;}
+.search-ico{position:absolute;left:9px;color:var(--text-dis);pointer-events:none;display:flex;align-items:center;}
 
 /* ══ SIDEBAR ══════════════════════════════════════════════════ */
 .oms-sidebar{background:var(--surface);border-right:1px solid var(--border);overflow-y:auto;position:sticky;top:var(--topbar-h);height:calc(100vh - var(--topbar-h));}
@@ -92,7 +92,7 @@ body{font-family:'Inter','Noto Sans SC',sans-serif;background:var(--bg);color:va
 .nav-item{display:flex;align-items:center;gap:8px;height:34px;padding:0 16px;font-size:13px;color:var(--text-mid);cursor:pointer;border-left:2px solid transparent;transition:all var(--dur-norm) var(--ease-out);text-decoration:none;}
 .nav-item:hover{background:var(--gray-2);color:var(--text-hi);}
 .nav-item.active{background:var(--amber-2);color:var(--text-hi);font-weight:500;border-left-color:var(--amber-9);}
-.nav-icon{width:16px;height:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px;}
+.nav-icon{width:16px;height:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:inherit;}
 .nav-badge{margin-left:auto;min-width:18px;height:18px;background:var(--red-s);color:#fff;border-radius:var(--r6);font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;padding:0 5px;}
 .sidebar-footer{border-top:1px solid var(--border);padding:10px 12px;}
 .user-row{display:flex;align-items:center;gap:8px;}
@@ -270,11 +270,11 @@ select.input{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xml
   </div>
   <div class="topbar-right">
     <div class="search-wrap">
-      <span class="search-ico">⌕</span>
+      <span class="search-ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
       <input class="topbar-search" placeholder="搜索订单、门店、菜品…">
     </div>
-    <button class="btn btn-brand btn-sm" onclick="showToast('success','工单已发起','新建门店申请进入审批流程')">+ 发起申请</button>
-    <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">🌙</button>
+    <button class="btn btn-brand btn-sm" onclick="showToast('success','工单已发起','新建门店申请进入审批流程')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> 发起申请</button>
+    <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
     <div class="user-avatar" style="width:32px;height:32px;font-size:12px;cursor:pointer">Z</div>
   </div>
 </header>
@@ -283,18 +283,18 @@ select.input{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xml
 <aside class="oms-sidebar">
   <nav>
     <div class="nav-group">概览</div>
-    <a class="nav-item active" onclick="nav('dashboard',this)"><span class="nav-icon">📊</span>系统概览</a>
+    <a class="nav-item active" onclick="nav('dashboard',this)"><span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg></span>系统概览</a>
     <div class="nav-group">业务管理</div>
-    <a class="nav-item" onclick="nav('orders',this)"><span class="nav-icon">🛒</span>订单管理<span class="nav-badge">12</span></a>
-    <a class="nav-item" onclick="nav('restaurants',this)"><span class="nav-icon">🏪</span>门店管理</a>
-    <a class="nav-item" onclick="nav('menu',this)"><span class="nav-icon">🍽️</span>菜品管理</a>
-    <a class="nav-item" onclick="nav('staff',this)"><span class="nav-icon">👥</span>员工管理</a>
+    <a class="nav-item" onclick="nav('orders',this)"><span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg></span>订单管理<span class="nav-badge">12</span></a>
+    <a class="nav-item" onclick="nav('restaurants',this)"><span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>门店管理</a>
+    <a class="nav-item" onclick="nav('menu',this)"><span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/></svg></span>菜品管理</a>
+    <a class="nav-item" onclick="nav('staff',this)"><span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>员工管理</a>
     <div class="nav-group">运营</div>
-    <a class="nav-item" onclick="nav('promotions',this)"><span class="nav-icon">🎁</span>优惠活动<span class="badge b-brand" style="margin-left:auto;padding:1px 5px;font-size:9px">NEW</span></a>
-    <a class="nav-item" onclick="nav('reports',this)"><span class="nav-icon">📈</span>数据报表</a>
+    <a class="nav-item" onclick="nav('promotions',this)"><span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg></span>优惠活动<span class="badge b-brand" style="margin-left:auto;padding:1px 5px;font-size:9px">NEW</span></a>
+    <a class="nav-item" onclick="nav('reports',this)"><span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>数据报表</a>
     <div class="nav-group">系统</div>
-    <a class="nav-item" onclick="showToast('info','功能开发中','权限管理即将上线')"><span class="nav-icon">🔑</span>权限管理</a>
-    <a class="nav-item" onclick="showToast('info','功能开发中','系统配置即将上线')"><span class="nav-icon">⚙️</span>系统配置</a>
+    <a class="nav-item" onclick="showToast('info','功能开发中','权限管理即将上线')"><span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"/><path d="M21 2l-9.6 9.6"/><path d="M15.5 7.5l3 3L22 7l-3-3"/></svg></span>权限管理</a>
+    <a class="nav-item" onclick="showToast('info','功能开发中','系统配置即将上线')"><span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span>系统配置</a>
   </nav>
   <div class="sidebar-footer">
     <div class="user-row">
@@ -316,12 +316,12 @@ select.input{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xml
     </div>
     <div class="page-actions">
       <button class="btn btn-s btn-sm" onclick="showToast('success','报表已导出','今日数据报表已下载')">导出报表</button>
-      <button class="btn btn-p btn-sm" onclick="openModal('modal-new-restaurant')">+ 新增门店</button>
+      <button class="btn btn-p btn-sm" onclick="openModal('modal-new-restaurant')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> 新增门店</button>
     </div>
   </div>
 
   <div class="alert alert-warning mb-4">
-    <span>⚠</span>
+    <span style="flex-shrink:0"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>
     <div><strong>库存预警：</strong>3 款热销菜品库存不足 20 份，请及时补充。<a onclick="nav('menu',document.querySelector('[onclick*=menu]'));return false;" style="color:var(--orange-t);font-weight:600;margin-left:8px;text-decoration:underline;cursor:pointer">查看详情 →</a></div>
   </div>
 
@@ -414,8 +414,8 @@ select.input{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xml
   <div class="page-header">
     <div><div class="page-title">订单管理</div><div class="page-sub">管理所有门店的外卖与堂食订单</div></div>
     <div class="page-actions">
-      <button class="btn btn-s btn-sm" onclick="showToast('success','导出成功','订单数据已导出')">导出</button>
-      <button class="btn btn-p btn-sm" onclick="openModal('modal-new-order')">+ 手动建单</button>
+      <button class="btn btn-s btn-sm" onclick="showToast('success','导出成功','订单数据已导出')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> 导出</button>
+      <button class="btn btn-p btn-sm" onclick="openModal('modal-new-order')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> 手动建单</button>
     </div>
   </div>
   <!-- 统计条：4×col-6 -->
@@ -429,7 +429,7 @@ select.input{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xml
   <div class="grid-24">
     <div class="col-24 table-wrap">
       <div class="toolbar">
-        <div class="search-wrap"><span class="search-ico">⌕</span><input class="toolbar-search" placeholder="搜索订单号、顾客姓名…" oninput="filterOrders(this.value)"></div>
+        <div class="search-wrap"><span class="search-ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span><input class="toolbar-search" placeholder="搜索订单号、顾客姓名…" oninput="filterOrders(this.value)"></div>
         <select class="filter-select" onchange="filterOrderStatus(this.value)"><option value="">全部状态</option><option value="待接单">待接单</option><option value="配送中">配送中</option><option value="已完成">已完成</option><option value="已取消">已取消</option></select>
         <select class="filter-select"><option>全部门店</option><option>北京朝阳旗舰店</option><option>上海浦东店</option></select>
         <span class="result-count" id="orderCount">共 12 条</span>
@@ -445,12 +445,12 @@ select.input{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xml
 <div class="page" id="page-restaurants">
   <div class="page-header">
     <div><div class="page-title">门店管理</div><div class="page-sub">管理全国 52 家 NearGo 餐厅门店</div></div>
-    <div class="page-actions"><button class="btn btn-p btn-sm" onclick="openModal('modal-new-restaurant')">+ 新增门店</button></div>
+    <div class="page-actions"><button class="btn btn-p btn-sm" onclick="openModal('modal-new-restaurant')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> 新增门店</button></div>
   </div>
   <div class="grid-24">
     <div class="col-24 table-wrap">
       <div class="toolbar">
-        <div class="search-wrap"><span class="search-ico">⌕</span><input class="toolbar-search" placeholder="搜索门店名称、城市…" oninput="filterRestaurants(this.value)"></div>
+        <div class="search-wrap"><span class="search-ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span><input class="toolbar-search" placeholder="搜索门店名称、城市…" oninput="filterRestaurants(this.value)"></div>
         <select class="filter-select"><option>全部状态</option><option>营业中</option><option>暂停营业</option><option>待审批</option></select>
         <select class="filter-select"><option>全部城市</option><option>北京</option><option>上海</option><option>广州</option><option>深圳</option></select>
         <span class="result-count" id="restCount">共 12 家</span>
@@ -467,8 +467,8 @@ select.input{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xml
   <div class="page-header">
     <div><div class="page-title">菜品管理</div><div class="page-sub">管理全部菜单、定价与库存</div></div>
     <div class="page-actions">
-      <button class="btn btn-s btn-sm" onclick="toggleMenuView()">切换视图</button>
-      <button class="btn btn-p btn-sm" onclick="openModal('modal-new-dish')">+ 新增菜品</button>
+      <button class="btn btn-s btn-sm" onclick="toggleMenuView()" id="viewToggleBtn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg> 切换视图</button>
+      <button class="btn btn-p btn-sm" onclick="openModal('modal-new-dish')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> 新增菜品</button>
     </div>
   </div>
   <div class="tabs">
@@ -489,12 +489,12 @@ select.input{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xml
 <div class="page" id="page-staff">
   <div class="page-header">
     <div><div class="page-title">员工管理</div><div class="page-sub">管理门店员工账号与权限</div></div>
-    <div class="page-actions"><button class="btn btn-p btn-sm" onclick="openModal('modal-new-staff')">+ 新增员工</button></div>
+    <div class="page-actions"><button class="btn btn-p btn-sm" onclick="openModal('modal-new-staff')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> 新增员工</button></div>
   </div>
   <div class="grid-24">
     <div class="col-24 table-wrap">
       <div class="toolbar">
-        <div class="search-wrap"><span class="search-ico">⌕</span><input class="toolbar-search" placeholder="搜索姓名、工号…"></div>
+        <div class="search-wrap"><span class="search-ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span><input class="toolbar-search" placeholder="搜索姓名、工号…"></div>
         <select class="filter-select"><option>全部角色</option><option>店长</option><option>收银员</option><option>厨师</option></select>
         <span class="result-count">共 86 名</span>
       </div>
@@ -509,9 +509,9 @@ select.input{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xml
 <div class="page" id="page-promotions">
   <div class="page-header">
     <div><div class="page-title">优惠活动</div><div class="page-sub">创建与管理促销活动</div></div>
-    <div class="page-actions"><button class="btn btn-brand btn-sm" onclick="openModal('modal-new-promo')">🎁 创建活动</button></div>
+    <div class="page-actions"><button class="btn btn-brand btn-sm" onclick="openModal('modal-new-promo')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg> 创建活动</button></div>
   </div>
-  <div class="alert alert-info mb-4"><span>ℹ</span><div>品牌色（#FFA902）专属营销区 — 验证品牌色克制使用（每屏 ≤10% 面积）</div></div>
+  <div class="alert alert-info mb-4"><span style="flex-shrink:0"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span><div>品牌色（#FFA902）专属营销区 — 验证品牌色克制使用（每屏 ≤10% 面积）</div></div>
   <!-- 优惠活动：3×col-8 -->
   <div class="grid-24" id="promoCards"></div>
 </div>
@@ -522,7 +522,7 @@ select.input{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xml
     <div><div class="page-title">数据报表</div><div class="page-sub">多维度经营数据分析</div></div>
     <div class="page-actions">
       <select class="filter-select"><option>近 7 天</option><option>近 30 天</option><option>近 90 天</option></select>
-      <button class="btn btn-p btn-sm" onclick="showToast('success','报表导出','Excel 已生成并下载')">导出</button>
+      <button class="btn btn-p btn-sm" onclick="showToast('success','报表导出','Excel 已生成并下载')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> 导出</button>
     </div>
   </div>
   <!-- 报表：col-12 + col-12 -->
@@ -538,7 +538,7 @@ select.input{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xml
 <!-- ══ MODALS ══ -->
 <div class="modal-overlay hidden" id="modal-new-restaurant">
   <div class="modal">
-    <div class="modal-header"><div><div class="modal-title">新增门店</div><div style="font-size:12px;color:var(--text-low);margin-top:3px">填写信息后提交将进入审批流程</div></div><button class="modal-close" onclick="closeModal('modal-new-restaurant')">✕</button></div>
+    <div class="modal-header"><div><div class="modal-title">新增门店</div><div style="font-size:12px;color:var(--text-low);margin-top:3px">填写信息后提交将进入审批流程</div></div><button class="modal-close" onclick="closeModal('modal-new-restaurant')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>
     <div class="modal-body">
       <div class="form-section"><div class="form-section-title">基本信息</div><div class="form-section-desc">门店基础档案数据</div>
         <div class="form-grid">
@@ -563,7 +563,7 @@ select.input{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xml
 </div>
 
 <div class="modal-overlay hidden" id="modal-new-dish">
-  <div class="modal"><div class="modal-header"><div class="modal-title">新增菜品</div><button class="modal-close" onclick="closeModal('modal-new-dish')">✕</button></div>
+  <div class="modal"><div class="modal-header"><div class="modal-title">新增菜品</div><button class="modal-close" onclick="closeModal('modal-new-dish')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>
     <div class="modal-body"><div class="form-grid">
       <div class="field"><label class="field-label">菜品名称 <span class="req">*</span></label><input class="input" placeholder="例：招牌红烧肉"></div>
       <div class="field"><label class="field-label">分类</label><select class="input"><option>主菜</option><option>小食</option><option>饮品</option><option>套餐</option></select></div>
@@ -578,12 +578,12 @@ select.input{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xml
 </div>
 
 <div class="modal-overlay hidden" id="modal-order-detail">
-  <div class="modal modal-lg"><div class="modal-header"><div><div class="modal-title" id="modal-order-title">订单详情</div><div style="font-size:12px;color:var(--text-low);margin-top:2px" id="modal-order-subtitle"></div></div><button class="modal-close" onclick="closeModal('modal-order-detail')">✕</button></div>
+  <div class="modal modal-lg"><div class="modal-header"><div><div class="modal-title" id="modal-order-title">订单详情</div><div style="font-size:12px;color:var(--text-low);margin-top:2px" id="modal-order-subtitle"></div></div><button class="modal-close" onclick="closeModal('modal-order-detail')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>
   <div class="modal-body" id="modal-order-body"></div><div class="modal-footer" id="modal-order-footer"></div></div>
 </div>
 
 <div class="modal-overlay hidden" id="modal-new-staff">
-  <div class="modal"><div class="modal-header"><div class="modal-title">新增员工</div><button class="modal-close" onclick="closeModal('modal-new-staff')">✕</button></div>
+  <div class="modal"><div class="modal-header"><div class="modal-title">新增员工</div><button class="modal-close" onclick="closeModal('modal-new-staff')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>
     <div class="modal-body"><div class="form-grid">
       <div class="field"><label class="field-label">姓名 <span class="req">*</span></label><input class="input" placeholder="请输入"></div>
       <div class="field"><label class="field-label">手机号 <span class="req">*</span></label><input class="input" type="tel" placeholder="请输入"></div>
@@ -595,7 +595,7 @@ select.input{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xml
 </div>
 
 <div class="modal-overlay hidden" id="modal-new-order">
-  <div class="modal"><div class="modal-header"><div class="modal-title">手动建单</div><button class="modal-close" onclick="closeModal('modal-new-order')">✕</button></div>
+  <div class="modal"><div class="modal-header"><div class="modal-title">手动建单</div><button class="modal-close" onclick="closeModal('modal-new-order')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>
     <div class="modal-body"><div class="form-grid">
       <div class="field"><label class="field-label">顾客姓名</label><input class="input" placeholder="请输入"></div>
       <div class="field"><label class="field-label">联系电话</label><input class="input" placeholder="请输入"></div>
@@ -608,7 +608,7 @@ select.input{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xml
 </div>
 
 <div class="modal-overlay hidden" id="modal-new-promo">
-  <div class="modal"><div class="modal-header"><div class="modal-title">创建优惠活动</div><button class="modal-close" onclick="closeModal('modal-new-promo')">✕</button></div>
+  <div class="modal"><div class="modal-header"><div class="modal-title">创建优惠活动</div><button class="modal-close" onclick="closeModal('modal-new-promo')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>
     <div class="modal-body"><div class="form-grid">
       <div class="field" style="grid-column:1/-1"><label class="field-label">活动名称 <span class="req">*</span></label><input class="input" placeholder="例：双十一全场八折"></div>
       <div class="field"><label class="field-label">折扣类型</label><select class="input"><option>折扣券</option><option>满减券</option><option>限时特价</option></select></div>
@@ -616,13 +616,13 @@ select.input{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xml
       <div class="field"><label class="field-label">开始时间</label><input class="input" type="datetime-local"></div>
       <div class="field"><label class="field-label">结束时间</label><input class="input" type="datetime-local"></div>
     </div></div>
-    <div class="modal-footer"><button class="btn btn-s btn-md" onclick="closeModal('modal-new-promo')">取消</button><button class="btn btn-brand btn-md" onclick="closeModal('modal-new-promo');showToast('success','活动已创建','优惠活动将在设定时间自动开启')">🎁 发布活动</button></div>
+    <div class="modal-footer"><button class="btn btn-s btn-md" onclick="closeModal('modal-new-promo')">取消</button><button class="btn btn-brand btn-md" onclick="closeModal('modal-new-promo');showToast('success','活动已创建','优惠活动将在设定时间自动开启')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg> 发布活动</button></div>
   </div>
 </div>
 
 <div class="modal-overlay hidden" id="modal-confirm-delete">
   <div class="modal" style="max-width:400px">
-    <div class="modal-header"><div><div class="modal-title" style="color:var(--red-t)">确认删除</div></div><button class="modal-close" onclick="closeModal('modal-confirm-delete')">✕</button></div>
+    <div class="modal-header"><div><div class="modal-title" style="color:var(--red-t)">确认删除</div></div><button class="modal-close" onclick="closeModal('modal-confirm-delete')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>
     <div class="modal-body"><p style="font-size:14px;color:var(--text-mid)" id="confirm-delete-msg">确定要删除这条记录吗？此操作不可撤销。</p></div>
     <div class="modal-footer"><button class="btn btn-s btn-md" onclick="closeModal('modal-confirm-delete')">取消</button><button class="btn btn-d btn-md" onclick="execDelete()">确认删除</button></div>
   </div>
@@ -706,7 +706,7 @@ function showToast(type,title,desc,dur=4000){
   const vp=document.getElementById('toastViewport');
   const t=document.createElement('div');
   t.className=`toast toast-${type}`;
-  t.innerHTML=`<div style="flex:1"><div class="toast-title">${title}</div>${desc?`<div class="toast-desc">${desc}</div>`:''}</div><button class="toast-close" onclick="this.parentElement.remove()">✕</button>`;
+  t.innerHTML=`<div style="flex:1"><div class="toast-title">${title}</div>${desc?`<div class="toast-desc">${desc}</div>`:''}</div><button class="toast-close" onclick="this.parentElement.remove()"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>`;
   vp.appendChild(t);
   if(dur>0)setTimeout(()=>t.remove(),dur);
 }
@@ -715,7 +715,7 @@ function showToast(type,title,desc,dur=4000){
 function toggleTheme(){
   const d=document.documentElement.getAttribute('data-theme')==='dark';
   document.documentElement.setAttribute('data-theme',d?'light':'dark');
-  document.getElementById('themeBtn').textContent=d?'🌙':'☀️';
+  document.getElementById('themeBtn').innerHTML=d?`<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>`:`<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>`;
   showToast('info',d?'已切换至浅色模式':'已切换至深色模式','');
 }
 
@@ -812,7 +812,7 @@ function renderMenu(){
       <td><button class="btn btn-ghost btn-sm" onclick="showToast('info','编辑','${d.name} 编辑中')">编辑</button></td>
     </tr>`).join('');
 }
-function toggleMenuView(){
+function toggleMenuView(){const b=document.getElementById('viewToggleBtn');if(b)b.innerHTML=`<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg> 切换视图`;
   menuViewCard=!menuViewCard;
   document.getElementById('menu-card-view').classList.toggle('hidden',!menuViewCard);
   document.getElementById('menu-table-view').classList.toggle('hidden',menuViewCard);
@@ -914,7 +914,13 @@ function renderTopMenu(){
     </div>`).join('');
 }
 function renderActivity(){
-  const acts=[{icon:'🛒',title:'北京朝阳旗舰店 新增订单',time:'2分钟前',bg:'var(--blue-bg)'},{icon:'✅',title:'上海浦东店 完成配送',time:'5分钟前',bg:'var(--green-bg)'},{icon:'⚠️',title:'库存预警：清蒸鲈鱼库存不足20份',time:'12分钟前',bg:'var(--orange-bg)'},{icon:'👤',title:'新员工 陈店长 已在上海静安店入职',time:'25分钟前',bg:'var(--purple-bg)'},{icon:'🏪',title:'深圳南山店 待审批申请已提交',time:'1小时前',bg:'var(--blue-bg)'}];
+  const acts=[
+    {icon:`<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>`,title:'北京朝阳旗舰店 新增订单',time:'2分钟前',bg:'var(--blue-bg)'},
+    {icon:`<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>`,title:'上海浦东店 完成配送',time:'5分钟前',bg:'var(--green-bg)'},
+    {icon:`<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>`,title:'库存预警：清蒸鲈鱼库存不足20份',time:'12分钟前',bg:'var(--orange-bg)'},
+    {icon:`<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="17" y1="11" x2="23" y2="11"/></svg>`,title:'新员工 陈店长 已在上海静安店入职',time:'25分钟前',bg:'var(--purple-bg)'},
+    {icon:`<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>`,title:'深圳南山店 待审批申请已提交',time:'1小时前',bg:'var(--blue-bg)'}
+  ];
   document.getElementById('activityFeed').innerHTML=acts.map(a=>`
     <div class="activity-item">
       <div class="act-dot" style="background:${a.bg}">${a.icon}</div>
@@ -924,7 +930,7 @@ function renderActivity(){
 function renderRecentOrders(){
   document.getElementById('recentOrdersList').innerHTML=ORDERS.slice(0,5).map(o=>`
     <div class="order-list-item">
-      <div class="ol-img">🍽️</div>
+      <div class="ol-img" style="display:flex;align-items:center;justify-content:center;background:var(--gray-3)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/></svg></div>
       <div class="ol-main">
         <div class="ol-name">${o.customer} · ${o.store}</div>
         <div class="ol-meta">${o.id} · ${o.time}</div>
